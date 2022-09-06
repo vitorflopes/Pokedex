@@ -3,7 +3,7 @@ package com.example.pokedex.ui.pokemons.form
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pokedex.model.Pokemon
+import com.example.pokedex.model.apiModel.Pokemon
 import com.example.pokedex.service.PokemonsServices
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit

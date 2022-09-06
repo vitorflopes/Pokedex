@@ -1,6 +1,6 @@
 package com.example.pokedex.dao
 
-import com.example.pokedex.model.Pokemon
+import com.example.pokedex.model.apiModel.Pokemon
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference

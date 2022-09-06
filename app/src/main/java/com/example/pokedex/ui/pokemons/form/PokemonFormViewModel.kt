@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.pokedex.dao.AuthDao
 import com.example.pokedex.dao.PokemonDao
-import com.example.pokedex.model.Pokemon
+import com.example.pokedex.model.apiModel.Pokemon
 
 class PokemonFormViewModel : ViewModel() {
 

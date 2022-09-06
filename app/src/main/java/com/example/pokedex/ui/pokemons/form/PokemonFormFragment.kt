@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.pokedex.databinding.FragmentPokemonFormBinding
-import com.example.pokedex.model.Pokemon
 import com.google.android.material.snackbar.Snackbar
 
 class PokemonFormFragment : Fragment() {

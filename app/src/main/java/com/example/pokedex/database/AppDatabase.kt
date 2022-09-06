@@ -7,7 +7,6 @@ import androidx.room.RoomDatabase
 import com.example.pokedex.dao.CampeaoDao
 import com.example.pokedex.dao.PokemonDao
 import com.example.pokedex.model.Campeao
-import com.example.pokedex.model.Pokemon
 
 /*
 @Database (

@@ -1,7 +1,7 @@
 package com.example.pokedex.service
 
-import com.example.pokedex.model.Pokemon
 import com.example.pokedex.model.PokemonsResponse
+import com.example.pokedex.model.apiModel.Pokemon
 import retrofit2.http.GET
 import retrofit2.http.Path
 

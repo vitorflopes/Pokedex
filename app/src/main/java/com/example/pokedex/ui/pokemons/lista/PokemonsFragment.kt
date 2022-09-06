@@ -8,10 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.example.pokedex.R
 import com.example.pokedex.databinding.FragmentPokemonsBinding
-import com.example.pokedex.ui.perfil.PerfilFragmentDirections
 import com.google.android.material.snackbar.Snackbar
 
 class PokemonsFragment : Fragment() {
@@ -30,7 +28,7 @@ class PokemonsFragment : Fragment() {
 
         viewModel.pokemons.observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) {
-                binding.lvPokemons.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, it)
+                //binding.lvPokemons.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, it)
             } else {
                 showSnackbar(view, "Ainda não á pokemons.")
             }

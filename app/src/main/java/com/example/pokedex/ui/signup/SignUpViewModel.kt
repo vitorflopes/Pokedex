@@ -3,15 +3,11 @@ package com.example.pokedex.ui.signup
 import android.graphics.Bitmap
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.pokedex.dao.AuthDao
 import com.example.pokedex.dao.CampeaoDao
 import com.example.pokedex.model.Campeao
-import com.example.pokedex.model.Pokemon
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 
 class SignUpViewModel : ViewModel() {

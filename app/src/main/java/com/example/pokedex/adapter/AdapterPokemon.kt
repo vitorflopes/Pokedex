@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
-import com.example.pokedex.model.Pokemon
+import com.example.pokedex.model.apiModel.Pokemon
 import com.squareup.picasso.Picasso
 
 class AdapterPokemon(private val context: Context, private val pokemons: MutableList<Pokemon>)
