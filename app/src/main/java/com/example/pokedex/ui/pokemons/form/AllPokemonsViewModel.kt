@@ -2,6 +2,7 @@ package com.example.pokedex.ui.pokemons.form
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.pokedex.model.Pokemon
 import com.example.pokedex.service.PokemonsServices
 import kotlinx.coroutines.GlobalScope
@@ -20,7 +21,7 @@ class AllPokemonsViewModel : ViewModel() {
 
         val pokemonsService = retrofit.create(PokemonsServices::class.java)
 
-        GlobalScope.launch {
+        viewModelScope.launch {
             val pokemons = pokemonsService.getPokemons()
             for (pokemon in pokemons.results!!) {
                 var pok = pokemonsService.getPokemon(pokemon.name!!)
