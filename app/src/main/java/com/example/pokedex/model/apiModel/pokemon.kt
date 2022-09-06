@@ -127,7 +127,7 @@ data class Pokemon(
     val types: List<PokemonType>,
     val sprites: PokemonSprites,
 
-    var campeaoId: String?
+    var campeaoId: String
 ) {
 }
 

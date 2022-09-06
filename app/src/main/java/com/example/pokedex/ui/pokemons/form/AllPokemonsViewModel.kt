@@ -23,7 +23,7 @@ class AllPokemonsViewModel : ViewModel() {
         viewModelScope.launch {
             val pokemons = pokemonsService.getPokemons()
             for (pokemon in pokemons.results!!) {
-                var pok = pokemonsService.getPokemon(pokemon.name!!)
+                val pok = pokemonsService.getPokemon(pokemon.name)
                 pokList.add(pok)
             }
         }
