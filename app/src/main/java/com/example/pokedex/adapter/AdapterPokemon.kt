@@ -14,9 +14,19 @@ import com.squareup.picasso.Picasso
 class AdapterPokemon(private val context: Context, private val pokemons: MutableList<Pokemon>)
     : RecyclerView.Adapter<AdapterPokemon.PokemonViewHolder>() {
 
+    private lateinit var mListener: onItemClickListener
+
+    interface onItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
+    fun setOnItemClickListener(listener: onItemClickListener) {
+        mListener = listener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
         val itemLista = LayoutInflater.from(context).inflate(R.layout.pokemon_list, parent, false)
-        val holder = PokemonViewHolder(itemLista)
+        val holder = PokemonViewHolder(itemLista, mListener)
         return holder
     }
 
@@ -28,9 +38,15 @@ class AdapterPokemon(private val context: Context, private val pokemons: Mutable
 
     override fun getItemCount(): Int = pokemons.size
 
-    inner class PokemonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class PokemonViewHolder(itemView: View, listener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {
         val name = itemView.findViewById<TextView>(R.id.tvNamePokemon)
         val imgFront = itemView.findViewById<ImageView>(R.id.ivFrontPoke)
         val imgBack = itemView.findViewById<ImageView>(R.id.ivBackPoke)
+
+        init {
+            itemView.setOnClickListener {
+                listener.onItemClick(adapterPosition)
+            }
+        }
     }
 }

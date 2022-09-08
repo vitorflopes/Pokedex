@@ -34,8 +34,14 @@ class AllPokemonsFragment : Fragment() {
             if (it.isNotEmpty()) {
                 val adapterPokemon = AdapterPokemon(requireContext(), it!!)
                 binding.rvPokemons.adapter = adapterPokemon
+                adapterPokemon.setOnItemClickListener(object : AdapterPokemon.onItemClickListener {
+                    override fun onItemClick(position: Int) {
+                        Toast.makeText(context, "${position}", Toast.LENGTH_LONG).show()
+                    }
+                })
             }
         }
+
 
         return view
     }

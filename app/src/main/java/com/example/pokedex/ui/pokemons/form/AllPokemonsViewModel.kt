@@ -11,7 +11,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class AllPokemonsViewModel : ViewModel() {
 
-    val pokList = mutableListOf<Pokemon>()
     var pokemonsList = MutableLiveData<MutableList<Pokemon>>()
 
     init {
@@ -19,6 +18,7 @@ class AllPokemonsViewModel : ViewModel() {
             .addConverterFactory(GsonConverterFactory.create()).build()
 
         val pokemonsService = retrofit.create(PokemonsServices::class.java)
+        val pokList = mutableListOf<Pokemon>()
 
         viewModelScope.launch {
             val pokemons = pokemonsService.getPokemons()
