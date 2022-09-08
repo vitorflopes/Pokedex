@@ -59,9 +59,6 @@
         android:name="com.example.pokedex.ui.pokemons.lista.PokemonsFragment"
         android:label="fragment_pokemons"
         tools:layout="@layout/fragment_pokemons" >
-        <action
-            android:id="@+id/action_pokemonsFragment_to_pokemonFormFragment"
-            app:destination="@id/pokemonFormFragment" />
         <argument
             android:name="campeaoId"
             app:argType="long" />
@@ -72,12 +69,16 @@
         android:label="fragment_pokemon_form"
         tools:layout="@layout/fragment_pokemon_form" >
         <argument
-            android:name="campeaoId"
-            app:argType="long" />
+            android:name="pokemonName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/allPokemonsFragment"
         android:name="com.example.pokedex.ui.pokemons.form.AllPokemonsFragment"
         android:label="fragment_all_pokemons"
-        tools:layout="@layout/fragment_all_pokemons" />
+        tools:layout="@layout/fragment_all_pokemons" >
+        <action
+            android:id="@+id/action_allPokemonsFragment_to_pokemonFormFragment"
+            app:destination="@id/pokemonFormFragment" />
+    </fragment>
 </navigation>
