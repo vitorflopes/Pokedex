@@ -34,6 +34,13 @@ class PokemonFormFragment : Fragment() {
             binding.textView.text = it.name
             binding.tvHtnum.text = it.height.toString()
             binding.tvWtnum.text = it.weight.toString()
+            binding.tvAbi1.text = it.abilities[0].ability.name
+
+            for (abilit in it.abilities) {
+                if (abilit.is_hidden) {
+                    binding.tvHiddenAbi.text = abilit.ability.name
+                }
+            }
         }
 
         viewModel.msg.observe(viewLifecycleOwner) {

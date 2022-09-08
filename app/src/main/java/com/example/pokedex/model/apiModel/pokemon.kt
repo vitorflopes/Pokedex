@@ -3,36 +3,36 @@ package com.example.pokedex.model.apiModel
 data class Ability(
     val id: Int,
     val name: String,
-    val isMainSeries: Boolean,
+    val is_main_series: Boolean,
     val generation: NamedApiResource,
     val names: List<Name>,
-    val effectEntries: List<VerboseEffect>,
-    val effectChanges: List<AbilityEffectChange>,
-    val flavorTextEntries: List<AbilityFlavorText>,
+    val effect_entries: List<VerboseEffect>,
+    val effect_changes: List<AbilityEffectChange>,
+    val flavor_text_entries: List<AbilityFlavorText>,
     val pokemon: List<AbilityPokemon>
 )
 
 data class AbilityEffectChange(
-    val effectEntries: List<Effect>,
-    val versionGroup: NamedApiResource
+    val effect_entries: List<Effect>,
+    val version_group: NamedApiResource
 )
 
 data class AbilityFlavorText(
-    val flavorText: String,
+    val flavor_text: String,
     val language: NamedApiResource,
-    val versionGroup: NamedApiResource
+    val version_group: NamedApiResource
 )
 
 data class AbilityPokemon(
-    val isHidden: Boolean,
+    val is_hidden: Boolean,
     val slot: Int,
     val pokemon: NamedApiResource
 )
 
 data class Characteristic(
     val id: Int,
-    val geneModulo: Int,
-    val possibleValues: List<Int>,
+    val gene_modulo: Int,
+    val possible_values: List<Int>,
     val descriptions: List<Description>
 )
 
@@ -40,19 +40,19 @@ data class EggGroup(
     val id: Int,
     val name: String,
     val names: List<Name>,
-    val pokemonSpecies: List<NamedApiResource>
+    val pokemon_species: List<NamedApiResource>
 )
 
 data class Gender(
     val id: Int,
     val name: String,
-    val pokemonSpeciesDetails: List<PokemonSpeciesGender>,
-    val requiredForEvolution: List<NamedApiResource>
+    val pokemon_species_setails: List<PokemonSpeciesGender>,
+    val required_for_evolution: List<NamedApiResource>
 )
 
 data class PokemonSpeciesGender(
     val rate: Int,
-    val pokemonSpecies: NamedApiResource
+    val pokemon_species: NamedApiResource
 )
 
 data class GrowthRate(
@@ -61,7 +61,7 @@ data class GrowthRate(
     val formula: String,
     val descriptions: List<Description>,
     val levels: List<GrowthRateExperienceLevel>,
-    val pokemonSpecies: List<NamedApiResource>
+    val pokemon_species: List<NamedApiResource>
 )
 
 data class GrowthRateExperienceLevel(
@@ -72,31 +72,31 @@ data class GrowthRateExperienceLevel(
 data class Nature(
     val id: Int,
     val name: String,
-    val decreasedStat: NamedApiResource?,
-    val increasedStat: NamedApiResource?,
-    val hatesFlavor: NamedApiResource?,
-    val likesFlavor: NamedApiResource?,
-    val pokeathlonStatChanges: List<NatureStatChange>,
-    val moveBattleStylePreferences: List<MoveBattleStylePreference>,
+    val decreased_stat: NamedApiResource?,
+    val increased_stat: NamedApiResource?,
+    val hates_flavor: NamedApiResource?,
+    val likes_flavor: NamedApiResource?,
+    val pokeathlon_stat_changes: List<NatureStatChange>,
+    val move_battle_style_preferences: List<MoveBattleStylePreference>,
     val names: List<Name>
 )
 
 data class NatureStatChange(
-    val maxChange: Int,
-    val pokeathlonStat: NamedApiResource
+    val max_change: Int,
+    val pokeathlon_stat: NamedApiResource
 )
 
 data class MoveBattleStylePreference(
-    val lowHpPreference: Int,
-    val highHpPreference: Int,
-    val moveBattleStyle: NamedApiResource
+    val low_hp_preference: Int,
+    val high_hp_preference: Int,
+    val move_battle_style: NamedApiResource
 )
 
 data class PokeathlonStat(
     val id: Int,
     val name: String,
     val names: List<Name>,
-    val affectingNatures: NaturePokeathlonStatAffectSets
+    val affecting_natures: NaturePokeathlonStatAffectSets
 )
 
 data class NaturePokeathlonStatAffectSets(
@@ -105,23 +105,23 @@ data class NaturePokeathlonStatAffectSets(
 )
 
 data class NaturePokeathlonStatAffect(
-    val maxChange: Int,
+    val max_change: Int,
     val nature: NamedApiResource
 )
 
 data class Pokemon(
     val id: Int,
     val name: String,
-    val baseExperience: Int,
+    val base_experience: Int,
     val height: Int,
-    val isDefault: Boolean,
+    val is_default: Boolean,
     val order: Int,
     val weight: Int,
     val species: NamedApiResource,
     val abilities: List<PokemonAbility>,
     val forms: List<NamedApiResource>,
-    val gameIndices: List<VersionGameIndex>,
-    val heldItems: List<PokemonHeldItem>,
+    val game_indices: List<VersionGameIndex>,
+    val held_items: List<PokemonHeldItem>,
     val moves: List<PokemonMove>,
     val stats: List<PokemonStat>,
     val types: List<PokemonType>,
@@ -144,14 +144,14 @@ data class PokemonSprites(
 )
 
 data class PokemonAbility(
-    val isHidden: Boolean,
+    val is_hidden: Boolean,
     val slot: Int,
     val ability: NamedApiResource
 )
 
 data class PokemonHeldItem(
     val item: NamedApiResource,
-    val versionDetails: List<PokemonHeldItemVersion>
+    val version_details: List<PokemonHeldItemVersion>
 )
 
 data class PokemonHeldItemVersion(
@@ -161,19 +161,19 @@ data class PokemonHeldItemVersion(
 
 data class PokemonMove(
     val move: NamedApiResource,
-    val versionGroupDetails: List<PokemonMoveVersion>
+    val version_group_details: List<PokemonMoveVersion>
 )
 
 data class PokemonMoveVersion(
-    val moveLearnMethod: NamedApiResource,
-    val versionGroup: NamedApiResource,
-    val levelLearnedAt: Int
+    val move_learn_method: NamedApiResource,
+    val version_group: NamedApiResource,
+    val level_learned_at: Int
 )
 
 data class PokemonStat(
     val stat: NamedApiResource,
     val effort: Int,
-    val baseStat: Int
+    val base_stat: Int
 )
 
 data class PokemonType(
@@ -182,56 +182,56 @@ data class PokemonType(
 )
 
 data class LocationAreaEncounter(
-    val locationArea: NamedApiResource,
-    val versionDetails: List<VersionEncounterDetail>
+    val location_area: NamedApiResource,
+    val version_details: List<VersionEncounterDetail>
 )
 
 data class PokemonColor(
     val id: Int,
     val name: String,
     val names: List<Name>,
-    val pokemonSpecies: List<NamedApiResource>
+    val pokemon_species: List<NamedApiResource>
 )
 
 data class PokemonForm(
     val id: Int,
     val name: String,
     val order: Int,
-    val formOrder: Int,
-    val isDefault: Boolean,
-    val isBattleOnly: Boolean,
-    val isMega: Boolean,
-    val formName: String,
+    val form_order: Int,
+    val is_default: Boolean,
+    val is_battle_only: Boolean,
+    val is_mega: Boolean,
+    val form_name: String,
     val pokemon: NamedApiResource,
-    val versionGroup: NamedApiResource,
+    val version_group: NamedApiResource,
     val sprites: PokemonFormSprites,
-    val formNames: List<Name>
+    val form_names: List<Name>
 )
 
 data class PokemonFormSprites(
-    val backDefault: String?,
-    val backShiny: String?,
-    val frontDefault: String?,
-    val frontShiny: String?
+    val back_default: String?,
+    val back_shiny: String?,
+    val front_default: String?,
+    val front_shiny: String?
 )
 
 data class PokemonHabitat(
     val id: Int,
     val name: String,
     val names: List<Name>,
-    val pokemonSpecies: List<NamedApiResource>
+    val pokemon_species: List<NamedApiResource>
 )
 
 data class PokemonShape(
     val id: Int,
     val name: String,
-    val awesomeNames: List<AwesomeName>,
+    val awesome_names: List<AwesomeName>,
     val names: List<Name>,
-    val pokemonSpecies: List<NamedApiResource>
+    val pokemon_species: List<NamedApiResource>
 )
 
 data class AwesomeName(
-    val awesomeName: String,
+    val awesome_name: String,
     val language: NamedApiResource
 )
 
@@ -239,34 +239,34 @@ data class PokemonSpecies(
     val id: Int,
     val name: String,
     val order: Int,
-    val genderRate: Int,
-    val captureRate: Int,
-    val baseHappiness: Int,
-    val isBaby: Boolean,
-    val isLegendary: Boolean,
-    val isMythical: Boolean,
-    val hatchCounter: Int,
-    val hasGenderDifferences: Boolean,
-    val formsSwitchable: Boolean,
-    val growthRate: NamedApiResource,
-    val pokedexNumbers: List<PokemonSpeciesDexEntry>,
-    val eggGroups: List<NamedApiResource>,
+    val gender_rate: Int,
+    val capture_rate: Int,
+    val base_happiness: Int,
+    val is_baby: Boolean,
+    val is_legendary: Boolean,
+    val is_mythical: Boolean,
+    val hatch_counter: Int,
+    val has_gender_differences: Boolean,
+    val forms_switchable: Boolean,
+    val growth_rate: NamedApiResource,
+    val pokedex_numbers: List<PokemonSpeciesDexEntry>,
+    val egg_groups: List<NamedApiResource>,
     val color: NamedApiResource,
     val shape: NamedApiResource,
-    val evolvesFromSpecies: NamedApiResource?,
-    val evolutionChain: ApiResource,
+    val evolves_from_species: NamedApiResource?,
+    val evolution_chain: ApiResource,
     val habitat: NamedApiResource?,
     val generation: NamedApiResource,
     val names: List<Name>,
-    val palParkEncounters: List<PalParkEncounterArea>,
-    val formDescriptions: List<Description>,
+    val pal_park_encounters: List<PalParkEncounterArea>,
+    val form_descriptions: List<Description>,
     val genera: List<Genus>,
     val varieties: List<PokemonSpeciesVariety>,
-    val flavorTextEntries: List<PokemonSpeciesFlavorText>
+    val flavor_text_entries: List<PokemonSpeciesFlavorText>
 )
 
 data class PokemonSpeciesFlavorText(
-    val flavorText: String,
+    val flavor_text: String,
     val language: NamedApiResource,
     val version: NamedApiResource
 )
@@ -277,30 +277,30 @@ data class Genus(
 )
 
 data class PokemonSpeciesDexEntry(
-    val entryNumber: Int,
+    val entry_number: Int,
     val pokedex: NamedApiResource
 )
 
 data class PalParkEncounterArea(
-    val baseScore: Int,
+    val base_score: Int,
     val rate: Int,
     val area: NamedApiResource
 )
 
 data class PokemonSpeciesVariety(
-    val isDefault: Boolean,
+    val is_default: Boolean,
     val pokemon: NamedApiResource
 )
 
 data class Stat(
     val id: Int,
     val name: String,
-    val gameIndex: Int,
-    val isBattleOnly: Boolean,
-    val affectingMoves: MoveStatAffectSets,
-    val affectingNatures: NatureStatAffectSets,
+    val game_index: Int,
+    val is_battle_only: Boolean,
+    val affecting_moves: MoveStatAffectSets,
+    val affecting_natures: NatureStatAffectSets,
     val characteristics: List<ApiResource>,
-    val moveDamageClass: NamedApiResource?,
+    val move_damage_class: NamedApiResource?,
     val names: List<Name>
 )
 
@@ -322,10 +322,10 @@ data class NatureStatAffectSets(
 data class Type(
     val id: Int,
     val name: String,
-    val damageRelations: TypeRelations,
-    val gameIndices: List<GenerationGameIndex>,
+    val damage_relations: TypeRelations,
+    val game_indices: List<GenerationGameIndex>,
     val generation: NamedApiResource,
-    val moveDamageClass: NamedApiResource?,
+    val move_damage_class: NamedApiResource?,
     val names: List<Name>,
     val pokemon: List<TypePokemon>,
     val moves: List<NamedApiResource>
@@ -337,10 +337,10 @@ data class TypePokemon(
 )
 
 data class TypeRelations(
-    val noDamageTo: List<NamedApiResource>,
-    val halfDamageTo: List<NamedApiResource>,
-    val doubleDamageTo: List<NamedApiResource>,
-    val noDamageFrom: List<NamedApiResource>,
-    val halfDamageFrom: List<NamedApiResource>,
-    val doubleDamageFrom: List<NamedApiResource>
+    val no_damage_to: List<NamedApiResource>,
+    val half_damage_to: List<NamedApiResource>,
+    val double_damage_to: List<NamedApiResource>,
+    val no_damage_from: List<NamedApiResource>,
+    val half_damage_from: List<NamedApiResource>,
+    val double_damage_from: List<NamedApiResource>
 )
