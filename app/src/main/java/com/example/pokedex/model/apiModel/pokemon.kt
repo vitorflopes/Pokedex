@@ -322,7 +322,7 @@ data class NatureStatAffectSets(
 data class Type(
     val id: Int,
     val name: String,
-    val damage_relations: TypeRelations,
+    val past_damage_relations: List<TypeRelationsPast>,
     val game_indices: List<GenerationGameIndex>,
     val generation: NamedApiResource,
     val move_damage_class: NamedApiResource?,
@@ -343,4 +343,9 @@ data class TypeRelations(
     val no_damage_from: List<NamedApiResource>,
     val half_damage_from: List<NamedApiResource>,
     val double_damage_from: List<NamedApiResource>
+)
+
+data class TypeRelationsPast(
+    val generation: Generation,
+    val damage_relations: TypeRelations
 )

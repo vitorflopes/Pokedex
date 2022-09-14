@@ -55,7 +55,7 @@ class SignInFragment : Fragment() {
             findNavController().navigate(R.id.signUpFragment)
         }
 
-        var imagemApi = binding.ivTesteFoto
+        val imagemApi = binding.ivTesteFoto
         Picasso.get().load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png")
             .into(imagemApi)
 

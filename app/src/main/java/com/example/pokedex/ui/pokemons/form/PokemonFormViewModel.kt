@@ -18,14 +18,20 @@ class PokemonFormViewModel() : ViewModel() {
     var species = MutableLiveData<PokemonSpecies>()
     var listAbilities = MutableLiveData<List<Ability>>()
     var listForms = MutableLiveData<List<PokemonForm>>()
+    var listHeldItems = MutableLiveData<List<Item>>()
     var listMoves = MutableLiveData<List<Move>>()
+    var listStats = MutableLiveData<List<Stat>>()
+    var listTypes = MutableLiveData<List<Type>>()
 
     fun retornaPokemon(pokemonName: String) {
 
         viewModelScope.launch {
             val helpListAbility = arrayListOf<Ability>()
             val helpListForm = arrayListOf<PokemonForm>()
+            val helpListItem = arrayListOf<Item>()
             val helpListMove = arrayListOf<Move>()
+            val helpListStat = arrayListOf<Stat>()
+            val helpListType = arrayListOf<Type>()
 
             pokemon.value = RetroFit.pokemonsService.getPokemon(pokemonName)
             species.value = RetroFit.pokemonsService.getSpecies(pokemon.value!!.id.toString())
@@ -42,11 +48,29 @@ class PokemonFormViewModel() : ViewModel() {
             }
             listForms.value = helpListForm
 
+            for (item in pokemon.value!!.held_items) {
+                val itm = RetroFit.pokemonsService.getItem(item.item.name)
+                helpListItem.add(itm)
+            }
+            listHeldItems.value = helpListItem
+
             for (move in pokemon.value!!.moves) {
                 val mv = RetroFit.pokemonsService.getMove(move.move.name)
                 helpListMove.add(mv)
             }
             listMoves.value = helpListMove
+
+            for (stat in pokemon.value!!.stats) {
+                val stt = RetroFit.pokemonsService.getStat(stat.stat.name)
+                helpListStat.add(stt)
+            }
+            listStats.value = helpListStat
+
+            for (type in pokemon.value!!.types) {
+                val tp = RetroFit.pokemonsService.getType(type.type.name)
+                helpListType.add(tp)
+            }
+            listTypes.value = helpListType
         }
     }
 
