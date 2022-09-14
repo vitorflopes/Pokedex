@@ -6,11 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pokedex.MainActivity
-import com.example.pokedex.R
 import com.example.pokedex.adapter.AdapterPokemon
 import com.example.pokedex.databinding.FragmentAllPokemonsBinding
 
@@ -33,11 +31,12 @@ class AllPokemonsFragment : Fragment() {
 
         viewModel.pokemonsList.observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) {
+                binding.progressBar.isVisible = false
                 val adapterPokemon = AdapterPokemon(requireContext(), it!!)
                 binding.rvPokemons.adapter = adapterPokemon
                 adapterPokemon.setOnItemClickListener(object : AdapterPokemon.onItemClickListener {
                     override fun onItemClick(position: Int) {
-                        var pokemonName = it[position].name
+                        val pokemonName = it[position].name
 
                         val direction = AllPokemonsFragmentDirections
                             .actionAllPokemonsFragmentToPokemonFormFragment(pokemonName)

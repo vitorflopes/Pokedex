@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.pokedex.databinding.FragmentPokemonFormBinding
@@ -41,6 +42,10 @@ class PokemonFormFragment : Fragment() {
                     binding.tvHiddenAbi.text = abilit.ability.name
                 }
             }
+        }
+
+        viewModel.listMoves.observe(viewLifecycleOwner) {
+            binding.progressBar2.isVisible = false
         }
 
         viewModel.msg.observe(viewLifecycleOwner) {

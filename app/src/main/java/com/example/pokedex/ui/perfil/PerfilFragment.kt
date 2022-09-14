@@ -38,7 +38,7 @@ class PerfilFragment : Fragment() {
         }
 
         binding.btnPokemons.setOnClickListener {
-            findNavController().navigate(R.id.pokemonsFragment)
+            findNavController().navigate(R.id.allPokemonsFragment)
         }
 
         /*

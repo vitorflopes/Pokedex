@@ -4,29 +4,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokedex.model.apiModel.Pokemon
-import com.example.pokedex.service.PokemonsServices
+import com.example.pokedex.service.RetroFit
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class AllPokemonsViewModel : ViewModel() {
 
     var pokemonsList = MutableLiveData<MutableList<Pokemon>>()
 
     init {
-        val retrofit: Retrofit = Retrofit.Builder().baseUrl("https://pokeapi.co/api/v2/")
-            .addConverterFactory(GsonConverterFactory.create()).build()
-
-        val pokemonsService = retrofit.create(PokemonsServices::class.java)
         val pokList = mutableListOf<Pokemon>()
 
         viewModelScope.launch {
-            val pokemons = pokemonsService.getPokemons()
+            val pokemons = RetroFit.pokemonsService.getPokemons()
             for (pokemon in pokemons.results!!) {
-                val pok = pokemonsService.getPokemon(pokemon.name)
+                val pok = RetroFit.pokemonsService.getPokemon(pokemon.name)
                 pokList.add(pok)
             }
+            pokemonsList.value = pokList
         }
-        pokemonsList.value = pokList
     }
 }

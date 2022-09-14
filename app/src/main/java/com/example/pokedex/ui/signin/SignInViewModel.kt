@@ -3,7 +3,6 @@ package com.example.pokedex.ui.signin
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.pokedex.dao.AuthDao
-import com.example.pokedex.dao.CampeaoDao
 
 class SignInViewModel : ViewModel() {
 
@@ -12,6 +11,14 @@ class SignInViewModel : ViewModel() {
 
     init {
         status.value = false
+
+        /*
+        viewModelScope.launch {
+            val pokeApi = PokeApiClient()
+            val bulbasaur = pokeApi.getPokemon(1)
+            println(bulbasaur)
+        }
+         */
     }
 
     fun autenticar (email: String, senha: String) {

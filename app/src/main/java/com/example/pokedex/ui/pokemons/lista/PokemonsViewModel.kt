@@ -14,14 +14,10 @@ class PokemonsViewModel : ViewModel() {
     init {
         val idCampeao = AuthDao.getCurrentUser()!!.uid
 
-        PokemonDao.listarPokemonsCampeao(idCampeao)
-            .addSnapshotListener { snapshot, error ->
-            if (error != null) {
-                msg.value = error.message
-            }
-            if (snapshot != null) {
-                pokemons.value = snapshot.toObjects(Pokemon::class.java)
-            }
+        PokemonDao.listarPokemonsCampeao(idCampeao).addOnSuccessListener {
+            pokemons.value = it.toObjects(Pokemon::class.java)
+        }.addOnFailureListener {
+            msg.value = it.message
         }
     }
 }

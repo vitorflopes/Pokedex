@@ -5,29 +5,48 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokedex.dao.AuthDao
 import com.example.pokedex.dao.PokemonDao
-import com.example.pokedex.model.apiModel.Pokemon
-import com.example.pokedex.service.PokemonsServices
+import com.example.pokedex.model.apiModel.*
+import com.example.pokedex.service.RetroFit
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class PokemonFormViewModel() : ViewModel() {
 
     var status = MutableLiveData<Boolean>()
     var msg = MutableLiveData<String>()
+
     var pokemon = MutableLiveData<Pokemon>()
-
-    init {
-
-    }
+    var species = MutableLiveData<PokemonSpecies>()
+    var listAbilities = MutableLiveData<List<Ability>>()
+    var listForms = MutableLiveData<List<PokemonForm>>()
+    var listMoves = MutableLiveData<List<Move>>()
 
     fun retornaPokemon(pokemonName: String) {
-        val retrofit: Retrofit = Retrofit.Builder().baseUrl("https://pokeapi.co/api/v2/")
-            .addConverterFactory(GsonConverterFactory.create()).build()
 
-        val pokemonsService = retrofit.create(PokemonsServices::class.java)
         viewModelScope.launch {
-            pokemon.value = pokemonsService.getPokemon(pokemonName)
+            val helpListAbility = arrayListOf<Ability>()
+            val helpListForm = arrayListOf<PokemonForm>()
+            val helpListMove = arrayListOf<Move>()
+
+            pokemon.value = RetroFit.pokemonsService.getPokemon(pokemonName)
+            species.value = RetroFit.pokemonsService.getSpecies(pokemon.value!!.id.toString())
+
+            for (abilitie in pokemon.value!!.abilities) {
+                val ablt = RetroFit.pokemonsService.getAbility(abilitie.ability.name)
+                helpListAbility.add(ablt)
+            }
+            listAbilities.value = helpListAbility
+
+            for (form in pokemon.value!!.forms) {
+                val frm = RetroFit.pokemonsService.getForm(form.name)
+                helpListForm.add(frm)
+            }
+            listForms.value = helpListForm
+
+            for (move in pokemon.value!!.moves) {
+                val mv = RetroFit.pokemonsService.getMove(move.move.name)
+                helpListMove.add(mv)
+            }
+            listMoves.value = helpListMove
         }
     }
 
