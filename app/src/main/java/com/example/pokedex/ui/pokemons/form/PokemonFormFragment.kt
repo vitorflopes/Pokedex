@@ -1,5 +1,6 @@
 package com.example.pokedex.ui.pokemons.form
 
+import android.animation.ObjectAnimator
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -96,27 +97,39 @@ class PokemonFormFragment : Fragment() {
 
             binding.tvHpevvalue.text = hpEffort.toString()
             binding.tvDexhpnum.text = hp.toString()
-            binding.pbHp.progress = hp
+            //binding.pbHp.progress = hp
+            ObjectAnimator.ofInt(binding.pbHp, "progress", hp)
+                .setDuration(2000).start()
 
             binding.tvAtkevvalue.text = attackEffort.toString()
             binding.tvDexatknum.text = attack.toString()
-            binding.pbAtk.progress = attack
+            //binding.pbAtk.progress = attack
+            ObjectAnimator.ofInt(binding.pbAtk, "progress", attack)
+                .setDuration(2000).start()
 
             binding.tvDefevvalue.text = attackDefense.toString()
             binding.tvDexdefnum.text = defense.toString()
-            binding.pbDef.progress = defense
+            //binding.pbDef.progress = defense
+            ObjectAnimator.ofInt(binding.pbDef, "progress", defense)
+                .setDuration(2000).start()
 
             binding.tvSpatkevvalue.text = spAttackEffort.toString()
             binding.tvDexspatknum.text = spAttack.toString()
-            binding.pbSpatk.progress = spAttack
+            //binding.pbSpatk.progress = spAttack
+            ObjectAnimator.ofInt(binding.pbSpatk, "progress", spAttack)
+                .setDuration(2000).start()
 
             binding.tvSpdefevvalue.text = spDefenseEffort.toString()
             binding.tvDexspdefnum.text = spDefense.toString()
-            binding.pbSpdef.progress = spDefense
+            //binding.pbSpdef.progress = spDefense
+            ObjectAnimator.ofInt(binding.pbSpdef, "progress", spDefense)
+                .setDuration(2000).start()
 
             binding.tvSpdevvalue.text = speedEffort.toString()
             binding.tvDexspdnum.text = speed.toString()
-            binding.pbSpd.progress = speed
+            //binding.pbSpd.progress = speed
+            ObjectAnimator.ofInt(binding.pbSpd, "progress", speed)
+                .setDuration(2000).start()
         }
 
         viewModel.species.observe(viewLifecycleOwner) {
