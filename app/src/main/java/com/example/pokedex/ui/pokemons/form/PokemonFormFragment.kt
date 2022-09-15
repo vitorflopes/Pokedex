@@ -33,6 +33,7 @@ class PokemonFormFragment : Fragment() {
         viewModel.pokemon.observe(viewLifecycleOwner) {
             Picasso.get().load(it.sprites!!.front_default).into(binding.ivDexImg)
             binding.textView.text = it.name
+            binding.tvDexspeciesname.text = it.species.name
             binding.tvHtnum.text = it.height.toString()
             binding.tvWtnum.text = it.weight.toString()
             binding.tvAbi1.text = it.abilities[0].ability.name
@@ -42,6 +43,62 @@ class PokemonFormFragment : Fragment() {
                     binding.tvHiddenAbi.text = abilit.ability.name
                 }
             }
+
+            //Stats
+            val hp = it.stats[0].base_stat
+            val hpEffort = it.stats[0].effort
+
+            val attack = it.stats[1].base_stat
+            val attackEffort = it.stats[1].effort
+
+            val defense = it.stats[2].base_stat
+            val attackDefense = it.stats[2].effort
+
+            val spAttack = it.stats[3].base_stat
+            val spAttackEffort = it.stats[3].effort
+
+            val spDefense = it.stats[4].base_stat
+            val spDefenseEffort = it.stats[4].effort
+
+            val speed = it.stats[5].base_stat
+            val speedEffort = it.stats[5].effort
+
+            val bst = hp + attack + defense + spAttack + spDefense + speed
+
+            binding.tvDexbstnum.text = bst.toString()
+
+            binding.tvHpevvalue.text = hpEffort.toString()
+            binding.tvDexhpnum.text = hp.toString()
+            binding.pbHp.progress = hp
+
+            binding.tvAtkevvalue.text = attackEffort.toString()
+            binding.tvDexatknum.text = attack.toString()
+            binding.pbAtk.progress = attack
+
+            binding.tvDefevvalue.text = attackDefense.toString()
+            binding.tvDexdefnum.text = defense.toString()
+            binding.pbDef.progress = defense
+
+            binding.tvSpatkevvalue.text = spAttackEffort.toString()
+            binding.tvDexspatknum.text = spAttack.toString()
+            binding.pbSpatk.progress = spAttack
+
+            binding.tvSpdefevvalue.text = spDefenseEffort.toString()
+            binding.tvDexspdefnum.text = spDefense.toString()
+            binding.pbSpdef.progress = spDefense
+
+            binding.tvSpdevvalue.text = speedEffort.toString()
+            binding.tvDexspdnum.text = speed.toString()
+            binding.pbSpd.progress = speed
+        }
+
+        viewModel.species.observe(viewLifecycleOwner) {
+            binding.tvGroup1.text = it.egg_groups[0].name
+            binding.tvGroup2.text = it.egg_groups[1].name
+
+            binding.tvHatchnum.text = it.hatch_counter.toString()
+
+            binding.textView11.text = it.gender_rate.toString()
         }
 
         viewModel.listMoves.observe(viewLifecycleOwner) {
