@@ -6,9 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import android.view.animation.LayoutAnimationController
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pokedex.R
 import com.example.pokedex.adapter.AdapterPokemon
 import com.example.pokedex.databinding.FragmentAllPokemonsBinding
 
@@ -27,12 +31,19 @@ class AllPokemonsFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(AllPokemonsViewModel::class.java)
 
         binding.rvPokemons.layoutManager = LinearLayoutManager(context)
+        //binding.rvPokemons.layoutManager = GridLayoutManager(context, 2)
         binding.rvPokemons.setHasFixedSize(true)
 
         viewModel.pokemonsList.observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) {
                 binding.progressBar.isVisible = false
+
+                val lac = LayoutAnimationController(AnimationUtils.loadAnimation(context, R.anim.item_anim))
+                lac.delay = 0.10f
+                lac.order = LayoutAnimationController.ORDER_NORMAL
+
                 val adapterPokemon = AdapterPokemon(requireContext(), it!!)
+                binding.rvPokemons.layoutAnimation = lac
                 binding.rvPokemons.adapter = adapterPokemon
                 adapterPokemon.setOnItemClickListener(object : AdapterPokemon.onItemClickListener {
                     override fun onItemClick(position: Int) {

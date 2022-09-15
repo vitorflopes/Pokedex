@@ -6,9 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.view.animation.LayoutAnimationController
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.pokedex.R
 import com.example.pokedex.databinding.FragmentPokemonFormBinding
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
@@ -32,6 +36,18 @@ class PokemonFormFragment : Fragment() {
 
         viewModel.pokemon.observe(viewLifecycleOwner) {
             Picasso.get().load(it.sprites.front_default).into(binding.ivDexImg)
+            binding.ivDexImg.animate().apply {
+                duration = 0
+                scaleX(0.00f)
+                scaleY(0.00f)
+            }.withEndAction {
+                binding.ivDexImg.animate().apply {
+                    duration = 1000
+                    scaleX(1.00f)
+                    scaleY(1.00f)
+                }
+            }
+
             binding.textView.text = it.name
             binding.tvDexspeciesname.text = it.species.name
             binding.tvHtnum.text = ((it.height)*10).toString() + " cm"
