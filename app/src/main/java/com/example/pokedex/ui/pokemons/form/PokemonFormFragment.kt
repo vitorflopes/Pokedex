@@ -31,16 +31,27 @@ class PokemonFormFragment : Fragment() {
         viewModel.retornaPokemon(argumentos.pokemonName)
 
         viewModel.pokemon.observe(viewLifecycleOwner) {
-            Picasso.get().load(it.sprites!!.front_default).into(binding.ivDexImg)
+            Picasso.get().load(it.sprites.front_default).into(binding.ivDexImg)
             binding.textView.text = it.name
             binding.tvDexspeciesname.text = it.species.name
-            binding.tvHtnum.text = it.height.toString()
-            binding.tvWtnum.text = it.weight.toString()
-            binding.tvAbi1.text = it.abilities[0].ability.name
+            binding.tvHtnum.text = ((it.height)*10).toString() + " cm"
+            binding.tvWtnum.text = ((it.weight)/10).toString() + " kg"
+            binding.tvExpnum.text = it.base_experience.toString()
+
+            binding.ivDextype1.text = it.types[0].type.name
+            if (it.types.size > 1) {
+                binding.ivDextype2.text = it.types[1].type.name
+            }
 
             for (abilit in it.abilities) {
-                if (abilit.is_hidden) {
+                if (abilit.slot == 3) {
                     binding.tvHiddenAbi.text = abilit.ability.name
+                }
+                if (abilit.slot == 1) {
+                    binding.tvAbi1.text = abilit.ability.name
+                }
+                if (abilit.slot == 2) {
+                    binding.textView39.text = abilit.ability.name
                 }
             }
 
@@ -94,11 +105,25 @@ class PokemonFormFragment : Fragment() {
 
         viewModel.species.observe(viewLifecycleOwner) {
             binding.tvGroup1.text = it.egg_groups[0].name
-            binding.tvGroup2.text = it.egg_groups[1].name
+            if (it.egg_groups.size > 1) {
+                binding.tvGroup2.text = it.egg_groups[1].name
+            }
 
-            binding.tvHatchnum.text = it.hatch_counter.toString()
+            binding.tvHatchnum.text = ((it.hatch_counter + 1)*255).toString()
 
             binding.textView11.text = it.gender_rate.toString()
+
+            binding.tvGrowthratetype.text = it.growth_rate.name
+
+            binding.tvCatchrate.text = it.capture_rate.toString()
+
+            binding.tvFrienshipnum.text = it.base_happiness.toString()
+
+            binding.textView2.text = it.pokedex_numbers[0].entry_number.toString()
+
+            binding.tvColorname.text = it.color.name
+
+            binding.textView3.text = it.flavor_text_entries[0].flavor_text
         }
 
         viewModel.listMoves.observe(viewLifecycleOwner) {

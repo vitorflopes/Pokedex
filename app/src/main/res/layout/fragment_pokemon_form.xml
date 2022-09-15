@@ -70,7 +70,7 @@
                     app:layout_constraintStart_toStartOf="@+id/textView"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-                <ImageView
+                <TextView
                     android:id="@+id/iv_dextype1"
                     android:layout_width="48dp"
                     android:layout_height="24dp"
@@ -80,7 +80,7 @@
                     app:layout_constraintStart_toEndOf="@+id/iv_dexImg"
                     app:layout_constraintTop_toTopOf="@+id/iv_dextype2" />
 
-                <ImageView
+                <TextView
                     android:id="@+id/iv_dextype2"
                     android:layout_width="48dp"
                     android:layout_height="24dp"

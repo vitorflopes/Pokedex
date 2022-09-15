@@ -49,19 +49,18 @@ class PerfilFragment : Fragment() {
                 findNavController().navigate(direcao)
             }
         }
+         */
 
         binding.btnPokemons.setOnClickListener {
-            val direcao = idCampeao?.let { it1 -> PerfilFragmentDirections.actionPerfilFragmentToPokemonsFragment(it1) }
-
-            if(direcao != null) {
-                findNavController().navigate(direcao)
-            }
+            findNavController().navigate(R.id.allPokemonsFragment)
         }
 
+        /*
         binding.fabPerfilExcluirCampeao.setOnClickListener {
             viewModel.campeao.value?.let { it1 -> viewModel.excluirCampeao(it1) }
             findNavController().navigate(R.id.signInFragment)
-        }*/
+        }
+         */
 
         binding.btnSair.setOnClickListener {
             AuthDao.deslogar()
