@@ -7,6 +7,7 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -26,10 +27,12 @@ class SignUpFragment : Fragment() {
         val view = binding.root
         viewModel = ViewModelProvider(this).get(SignUpViewModel::class.java)
 
+        /*
         binding.imFotoCadastro.setOnClickListener {
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(intent, 51157)
         }
+        */
 
         viewModel.status.observe(viewLifecycleOwner) {
             if (it)
@@ -39,7 +42,17 @@ class SignUpFragment : Fragment() {
             val nomeCampeao = binding.edtTxtSignupNomeCampeao.text.toString()
             val email = binding.edtTxtSignupEmail.text.toString()
             val senha = binding.edtTxtSignupSenha.text.toString()
-            viewModel.salvarCampeao(nomeCampeao, email, senha)
+            val repSenha = binding.edtTxtSignupReSenha.text.toString()
+            if (senha == repSenha) {
+                viewModel.salvarCampeao(nomeCampeao, email, senha)
+            }
+            else {
+                Toast.makeText(context, "As senhas precisam ser iguais.", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        binding.btnVoltar.setOnClickListener {
+            findNavController().popBackStack()
         }
 
         return view
@@ -48,7 +61,7 @@ class SignUpFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         val imagem: Bitmap = data!!.getParcelableExtra("data")!!
-        binding.imFotoCadastro.setImageBitmap(imagem)
+        //binding.imFotoCadastro.setImageBitmap(imagem)
         viewModel.pegarFoto(imagem)
     }
 }

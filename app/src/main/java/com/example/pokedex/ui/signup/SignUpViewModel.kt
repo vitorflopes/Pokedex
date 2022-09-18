@@ -54,7 +54,7 @@ class SignUpViewModel : ViewModel() {
 
         val baos = ByteArrayOutputStream()
         this.foto!!.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-        var task = reference.putBytes(baos.toByteArray())
+        val task = reference.putBytes(baos.toByteArray())
         task.addOnSuccessListener { msg.value = "Campeão inserido com sucesso." }
         task.addOnFailureListener { msg.value = it.message }
     }

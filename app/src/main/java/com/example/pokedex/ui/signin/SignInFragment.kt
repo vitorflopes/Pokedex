@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -35,6 +36,7 @@ class SignInFragment : Fragment() {
         }
 
         viewModel.msg.observe(viewLifecycleOwner) {
+            binding.progressBar3.isVisible = false
             if (it.isNotBlank())
                 Snackbar.make(view, it, Snackbar.LENGTH_LONG).show()
         }
@@ -42,6 +44,7 @@ class SignInFragment : Fragment() {
         lerPref(binding.edtTxtSigninEmail)
 
         binding.btnSignInAcessar.setOnClickListener {
+            binding.progressBar3.isVisible = true
             val email = binding.edtTxtSigninEmail.text.toString()
             val password = binding.edtTxtSigninSenha.text.toString()
             val lembrar = binding.cbSigninLembrar.isChecked
