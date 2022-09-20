@@ -1,5 +1,9 @@
 package com.example.pokedex.model.apiModel
 
+data class PokemonGame(
+    val results: List<VersionGroup>
+)
+
 data class Generation(
     val id: Int,
     val name: String,

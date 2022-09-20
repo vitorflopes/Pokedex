@@ -32,8 +32,8 @@ class AdapterPokemon(private val context: Context, private val pokemons: Mutable
     }
 
     override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
-        Picasso.get().load(pokemons[position].sprites!!.front_default).into(holder.imgFront)
-        Picasso.get().load(pokemons[position].sprites!!.back_default).into(holder.imgBack)
+        Picasso.get().load(pokemons[position].sprites.front_default).into(holder.imgFront)
+        Picasso.get().load(pokemons[position].sprites.back_default).into(holder.imgBack)
         holder.name.text = pokemons[position].name
     }
 

@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pokedex"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-1754457021414641~7940358445"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

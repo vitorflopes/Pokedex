@@ -11,6 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:adSize="BANNER"
+            app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            android:elevation="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline7" />
+
         <ProgressBar
             android:id="@+id/progressBar3"
             style="?android:attr/progressBarStyle"
@@ -37,7 +48,7 @@
                 android:id="@+id/txtVwSignupLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:shadowColor="#aedd2b"
+                android:shadowColor="@color/verde_pokedex"
                 android:shadowRadius="8"
                 android:text="Cadastrar-se"
                 android:textColor="@color/verde_pokedex"
@@ -74,7 +85,9 @@
             app:cardCornerRadius="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline4" />
+            app:layout_constraintTop_toTopOf="@+id/guideline4" >
+
+        </androidx.cardview.widget.CardView>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline7"
@@ -93,6 +106,7 @@
             android:text="Entrar"
             android:textAlignment="center"
             android:textAllCaps="false"
+            android:textSize="16sp"
             app:cornerRadius="50dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline7"
             app:layout_constraintEnd_toEndOf="parent"
@@ -128,7 +142,7 @@
             android:id="@+id/cbSigninLembrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:buttonTint="#aedd2b"
+            android:buttonTint="@color/verde_pokedex"
             android:elevation="10dp"
             android:text="Lembrar e-mail"
             android:textColor="#FFFFFF"

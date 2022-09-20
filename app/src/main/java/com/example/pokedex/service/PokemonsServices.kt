@@ -36,4 +36,10 @@ interface PokemonsServices {
 
     @GET("nature")
     suspend fun getNature () : PokemonNature
+
+    @GET("item?limit=1610")
+    suspend fun getItens() : PokemonItem
+
+    @GET("version-group?limit=30")
+    suspend fun getGames() : PokemonGame
 }

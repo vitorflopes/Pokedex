@@ -1,5 +1,9 @@
 package com.example.pokedex.model.apiModel
 
+data class PokemonItem(
+    val results: List<Item>
+)
+
 data class Item(
     val id: Int,
     val name: String,

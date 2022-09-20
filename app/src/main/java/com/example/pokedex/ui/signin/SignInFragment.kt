@@ -12,6 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.pokedex.R
 import com.example.pokedex.databinding.FragmentSignInBinding
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 
@@ -21,6 +24,8 @@ class SignInFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var viewModel: SignInViewModel
 
+    lateinit var mAdView: AdView
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,6 +33,11 @@ class SignInFragment : Fragment() {
         _binding = FragmentSignInBinding.inflate(inflater, container, false)
         val view = binding.root
         viewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
+
+        MobileAds.initialize(requireContext()){}
+        mAdView = binding.adView
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
 
         viewModel.status.observe(viewLifecycleOwner) {
             if (it) {
