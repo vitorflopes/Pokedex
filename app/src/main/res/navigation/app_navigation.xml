@@ -44,6 +44,9 @@
         <action
             android:id="@+id/action_perfilFragment_to_pokemonsFragment"
             app:destination="@id/pokemonsFragment" />
+        <action
+            android:id="@+id/action_perfilFragment_to_allPokemonsFragment"
+            app:destination="@id/allPokemonsFragment" />
     </fragment>
     <fragment
         android:id="@+id/editarFragment"
@@ -71,6 +74,9 @@
         <argument
             android:name="pokemonName"
             app:argType="string" />
+        <action
+            android:id="@+id/action_pokemonFormFragment_to_createPokemonFragment"
+            app:destination="@id/createPokemonFragment" />
     </fragment>
     <fragment
         android:id="@+id/allPokemonsFragment"
@@ -80,5 +86,14 @@
         <action
             android:id="@+id/action_allPokemonsFragment_to_pokemonFormFragment"
             app:destination="@id/pokemonFormFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createPokemonFragment"
+        android:name="com.example.pokedex.ui.pokemons.create.CreatePokemonFragment"
+        android:label="fragment_create_pokemon"
+        tools:layout="@layout/fragment_create_pokemon" >
+        <argument
+            android:name="pokemonName"
+            app:argType="string" />
     </fragment>
 </navigation>

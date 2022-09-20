@@ -7,7 +7,7 @@ import retrofit2.http.Path
 
 interface PokemonsServices {
 
-    @GET("pokemon?limit=200")
+    @GET("pokemon?limit=30")
     suspend fun getPokemons() : PokemonsResponse
 
     @GET("pokemon/{name}")
@@ -33,4 +33,7 @@ interface PokemonsServices {
 
     @GET("item/{name}/")
     suspend fun getItem (@Path("name") id: String) : Item
+
+    @GET("nature")
+    suspend fun getNature () : PokemonNature
 }

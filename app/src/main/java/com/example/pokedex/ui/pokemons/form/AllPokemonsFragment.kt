@@ -42,7 +42,7 @@ class AllPokemonsFragment : Fragment() {
                 lac.delay = 0.10f
                 lac.order = LayoutAnimationController.ORDER_NORMAL
 
-                val adapterPokemon = AdapterPokemon(requireContext(), it!!)
+                val adapterPokemon = AdapterPokemon(requireContext(), it)
                 binding.rvPokemons.layoutAnimation = lac
                 binding.rvPokemons.adapter = adapterPokemon
                 adapterPokemon.setOnItemClickListener(object : AdapterPokemon.onItemClickListener {

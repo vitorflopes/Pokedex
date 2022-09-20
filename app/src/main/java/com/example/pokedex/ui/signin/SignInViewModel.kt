@@ -11,14 +11,6 @@ class SignInViewModel : ViewModel() {
 
     init {
         status.value = false
-
-        /*
-        viewModelScope.launch {
-            val pokeApi = PokeApiClient()
-            val bulbasaur = pokeApi.getPokemon(1)
-            println(bulbasaur)
-        }
-         */
     }
 
     fun autenticar (email: String, senha: String) {

@@ -81,6 +81,10 @@ data class Nature(
     val names: List<Name>
 )
 
+data class PokemonNature(
+    val results: List<Nature>
+)
+
 data class NatureStatChange(
     val max_change: Int,
     val pokeathlon_stat: NamedApiResource

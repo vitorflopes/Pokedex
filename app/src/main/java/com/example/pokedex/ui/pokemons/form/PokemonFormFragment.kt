@@ -180,6 +180,12 @@ class PokemonFormFragment : Fragment() {
         }
          */
 
+        binding.btnAddPokemon.setOnClickListener {
+            val direction = PokemonFormFragmentDirections
+                .actionPokemonFormFragmentToCreatePokemonFragment(argumentos.pokemonName)
+            findNavController().navigate(direction)
+        }
+
         return view
     }
 
