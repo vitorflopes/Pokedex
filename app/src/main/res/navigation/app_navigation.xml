@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_navigation"
-    app:startDestination="@id/allPokemonsFragment">
+    app:startDestination="@id/signInFragment">
 
     <fragment
         android:id="@+id/campeoesListaFragment"
@@ -47,6 +47,9 @@
         <action
             android:id="@+id/action_perfilFragment_to_allPokemonsFragment"
             app:destination="@id/allPokemonsFragment" />
+        <action
+            android:id="@+id/action_perfilFragment_to_userPokemonsFragment"
+            app:destination="@id/userPokemonsFragment" />
     </fragment>
     <fragment
         android:id="@+id/editarFragment"
@@ -96,4 +99,9 @@
             android:name="pokemonName"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/userPokemonsFragment"
+        android:name="com.example.pokedex.ui.pokemons.userPokemons.UserPokemonsFragment"
+        android:label="fragment_user_pokemons"
+        tools:layout="@layout/fragment_user_pokemons" />
 </navigation>

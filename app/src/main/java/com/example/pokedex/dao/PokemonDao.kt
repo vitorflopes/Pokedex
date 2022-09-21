@@ -21,5 +21,10 @@ class PokemonDao {
         fun inserirPokemon(pokemon: CreatedPokemon): Task<DocumentReference> {
             return Firebase.firestore.collection("Pokemons").add(pokemon)
         }
+
+        fun pokemonsPorId(idUsuario: String): Task<QuerySnapshot> {
+            return Firebase.firestore.collection("Pokemons")
+                .whereEqualTo("idUsuario", idUsuario).get()
+        }
     }
 }

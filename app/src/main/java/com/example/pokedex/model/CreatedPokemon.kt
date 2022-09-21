@@ -2,17 +2,17 @@ package com.example.pokedex.model
 
 class CreatedPokemon(
 
-    val sprite: String?,
-    val nickname: String?,
-    val species: String,
-    val lvl: String,
-    val gender: Boolean,
-    val ability: String,
-    val item: String?,
-    val iv: List<String>?,
-    val ev: List<String>?,
-    val nature: String?,
-    val moves: List<String>,
+    val sprite: String? = null,
+    val nickname: String? = null,
+    val species: String? = null,
+    val lvl: String? = null,
+    val gender: Boolean? = null,
+    val ability: String? = null,
+    val item: String? = null,
+    val iv: List<String>? = null,
+    val ev: List<String>? = null,
+    val nature: String? = null,
+    val moves: List<String>? = null,
     //var id: Long = 0,
     val idUsuario: String? = null
 
@@ -48,7 +48,7 @@ class CreatedPokemon(
                 "$evs\n" +
                 "$ivs\n" +
                 "$nature Nature\n" +
-                "- ${moves[0]}\n" +
+                "- ${moves!![0]}\n" +
                 "- ${moves[1]}\n" +
                 "- ${moves[2]}\n" +
                 "- ${moves[3]}"

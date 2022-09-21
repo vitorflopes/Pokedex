@@ -2,6 +2,7 @@ package com.example.pokedex.ui.signin
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.pokedex.R
 import com.example.pokedex.databinding.FragmentSignInBinding
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.*
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 
@@ -34,10 +33,39 @@ class SignInFragment : Fragment() {
         val view = binding.root
         viewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
 
-        MobileAds.initialize(requireContext()){}
-        mAdView = binding.adView
+        MobileAds.initialize(requireContext()) {}
+
         val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
+        binding.adView.loadAd(adRequest)
+
+        binding.adView.adListener = object: AdListener() {
+            override fun onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+            }
+
+            override fun onAdClosed() {
+                // Code to be executed when the user is about to return
+                // to the app after tapping on an ad.
+            }
+
+            override fun onAdFailedToLoad(adError : LoadAdError) {
+                Log.d("TesteAnuncio", adError.message)
+            }
+
+            override fun onAdImpression() {
+                // Code to be executed when an impression is recorded
+                // for an ad.
+            }
+
+            override fun onAdLoaded() {
+                Log.d("TesteAnuncio", "carregado")
+            }
+
+            override fun onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+            }
+        }
 
         viewModel.status.observe(viewLifecycleOwner) {
             if (it) {

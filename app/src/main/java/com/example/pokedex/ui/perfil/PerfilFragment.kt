@@ -25,12 +25,17 @@ class PerfilFragment : Fragment() {
         val view = binding.root
         viewModel = ViewModelProvider(this).get(PerfilViewModel::class.java)
 
+        viewModel.numPokemons()
         viewModel.detalhesCampeao()
 
         viewModel.campeao.observe(viewLifecycleOwner) {
             val nomeCampeao = it.strNome()
 
             binding.tvPerfilNomeCampeao.text = nomeCampeao
+        }
+
+        viewModel.numPokemonsUser.observe(viewLifecycleOwner) {
+            binding.tvNumeroPokemonsUsuario.text = it.toString()
         }
 
         binding.btnPerfilCampeoes.setOnClickListener {
@@ -41,30 +46,17 @@ class PerfilFragment : Fragment() {
             findNavController().navigate(R.id.allPokemonsFragment)
         }
 
-        /*
-        binding.fabPerfilEdit.setOnClickListener {
-            val direcao = idCampeao?.let { it1 -> PerfilFragmentDirections.actionPerfilFragmentToEditarFragment(it1) }
-
-            if(direcao != null) {
-                findNavController().navigate(direcao)
-            }
-        }
-         */
-
         binding.btnPokemons.setOnClickListener {
             findNavController().navigate(R.id.allPokemonsFragment)
         }
 
-        /*
-        binding.fabPerfilExcluirCampeao.setOnClickListener {
-            viewModel.campeao.value?.let { it1 -> viewModel.excluirCampeao(it1) }
-            findNavController().navigate(R.id.signInFragment)
-        }
-         */
-
         binding.btnSair.setOnClickListener {
             AuthDao.deslogar()
             findNavController().navigate(R.id.signInFragment)
+        }
+
+        binding.btnSeusPokemons.setOnClickListener {
+            findNavController().navigate(R.id.userPokemonsFragment)
         }
 
         return view
