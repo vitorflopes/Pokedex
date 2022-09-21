@@ -73,18 +73,4 @@ class PokemonFormViewModel() : ViewModel() {
             listTypes.value = helpListType
         }
     }
-
-    fun salvar(pokemon: Pokemon) {
-
-        val idCampeao = AuthDao.getCurrentUser()!!.uid
-        pokemon.campeaoId = idCampeao
-        val task = PokemonDao.inserir(pokemon, idCampeao)
-
-        task.addOnSuccessListener {
-            msg.value = "Pokemon criado com sucesso."
-            status.value = true
-        }.addOnFailureListener {
-            msg.value = it.message
-        }
-    }
 }

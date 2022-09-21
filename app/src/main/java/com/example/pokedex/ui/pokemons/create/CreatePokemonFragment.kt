@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.pokedex.R
+import com.example.pokedex.dao.AuthDao
 import com.example.pokedex.databinding.FragmentCreatePokemonBinding
+import com.example.pokedex.model.CreatedPokemon
 import com.squareup.picasso.Picasso
 
 class CreatePokemonFragment : Fragment() {
@@ -96,33 +99,36 @@ class CreatePokemonFragment : Fragment() {
                         p2: Int,
                         p3: Long
                     ) {
+                        binding.acMove1.text.clear()
+                        binding.acMove2.text.clear()
+                        binding.acMove3.text.clear()
+                        binding.acMove4.text.clear()
+
                         val versionGroup = viewModel.listGames.value?.get(p2)?.name!!.toString()
                         val pokemon = viewModel.pokemon.value
-                        if (versionGroup != null) {
-                            val listMoves = arrayListOf<String>()
-                            for (move in pokemon!!.moves) {
-                                for (versionG in move.version_group_details) {
-                                    if (versionG.version_group.name == versionGroup) {
-                                        listMoves.add(move.move.name)
-                                    }
+                        val listMoves = arrayListOf<String>()
+                        for (move in pokemon!!.moves) {
+                            for (versionG in move.version_group_details) {
+                                if (versionG.version_group.name == versionGroup) {
+                                    listMoves.add(move.move.name)
                                 }
                             }
-                            val adapterMove: ArrayAdapter<String> =
-                                ArrayAdapter<String>(
-                                    requireContext(),
-                                    android.R.layout.simple_dropdown_item_1line,
-                                    listMoves
-                                )
-
-                            val autoTextM1: AutoCompleteTextView = binding.acMove1
-                            autoTextM1.setAdapter(adapterMove)
-                            val autoTextM2: AutoCompleteTextView = binding.acMove2
-                            autoTextM2.setAdapter(adapterMove)
-                            val autoTextM3: AutoCompleteTextView = binding.acMove3
-                            autoTextM3.setAdapter(adapterMove)
-                            val autoTextM4: AutoCompleteTextView = binding.acMove4
-                            autoTextM4.setAdapter(adapterMove)
                         }
+                        val adapterMove: ArrayAdapter<String> =
+                            ArrayAdapter<String>(
+                                requireContext(),
+                                android.R.layout.simple_dropdown_item_1line,
+                                listMoves
+                            )
+
+                        val autoTextM1: AutoCompleteTextView = binding.acMove1
+                        autoTextM1.setAdapter(adapterMove)
+                        val autoTextM2: AutoCompleteTextView = binding.acMove2
+                        autoTextM2.setAdapter(adapterMove)
+                        val autoTextM3: AutoCompleteTextView = binding.acMove3
+                        autoTextM3.setAdapter(adapterMove)
+                        val autoTextM4: AutoCompleteTextView = binding.acMove4
+                        autoTextM4.setAdapter(adapterMove)
                     }
 
                     override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -133,6 +139,56 @@ class CreatePokemonFragment : Fragment() {
                         ).show()
                     }
                 }
+        }
+
+        binding.btnSalvarPokemon.setOnClickListener {
+            val nickname = binding.inputName.text.toString()
+            val species = binding.acSpecies.text.toString()
+            val lvl = binding.inputLvl.text.toString()
+            val gender = true
+            val ability = binding.spinnerAbi.selectedItem.toString()
+            val item = binding.acItem.text.toString()
+
+            val listIv = arrayListOf<String>()
+            listIv.add(binding.inputHpiv.text.toString())
+            listIv.add(binding.inputAtkiv.text.toString())
+            listIv.add(binding.inputDefiv.text.toString())
+            listIv.add(binding.inputSpatkiv.text.toString())
+            listIv.add(binding.inputSpdefiv.text.toString())
+            listIv.add(binding.inputSpdiv.text.toString())
+            val iv = listIv
+
+            val listEv = arrayListOf<String>()
+            listEv.add(binding.inputHpev.text.toString())
+            listEv.add(binding.inputAtkev.text.toString())
+            listEv.add(binding.inputDefev.text.toString())
+            listEv.add(binding.inputSpatkev.text.toString())
+            listEv.add(binding.inputSpdefev.text.toString())
+            listEv.add(binding.inputSpdev.text.toString())
+            val ev = listEv
+
+            val nature = binding.spinnerNat.selectedItem.toString()
+
+            val listMoves = arrayListOf<String>()
+            listMoves.add(binding.acMove1.text.toString())
+            listMoves.add(binding.acMove2.text.toString())
+            listMoves.add(binding.acMove3.text.toString())
+            listMoves.add(binding.acMove4.text.toString())
+            val moves = listMoves
+
+            val idUsuario = AuthDao.getCurrentUser()!!.uid
+
+            val pokemon =
+                CreatedPokemon(viewModel.pokemon.value!!.sprites.front_default, nickname, species, lvl, gender, ability, item, iv, ev, nature, moves, idUsuario)
+
+            viewModel.inserirPokemon(pokemon)
+        }
+
+        viewModel.status.observe(viewLifecycleOwner) {
+            if (it) {
+                Toast.makeText(context, "Pokemon criado!", Toast.LENGTH_LONG).show()
+                findNavController().popBackStack()
+            }
         }
 
         return view

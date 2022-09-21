@@ -3,6 +3,8 @@ package com.example.pokedex.ui.pokemons.create
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.pokedex.dao.PokemonDao
+import com.example.pokedex.model.CreatedPokemon
 import com.example.pokedex.model.apiModel.*
 import com.example.pokedex.service.RetroFit
 import kotlinx.coroutines.launch
@@ -61,6 +63,14 @@ class CreatePokemonViewModel : ViewModel() {
                 helpListType.add(tp)
             }
             listTypes.value = helpListType
+        }
+    }
+
+    fun inserirPokemon (pokemon: CreatedPokemon) {
+        PokemonDao.inserirPokemon(pokemon).addOnSuccessListener {
+            status.value = true
+        }.addOnFailureListener {
+            msg.value = it.message
         }
     }
 }
