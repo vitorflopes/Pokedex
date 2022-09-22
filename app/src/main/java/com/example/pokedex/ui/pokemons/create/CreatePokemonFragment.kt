@@ -1,6 +1,8 @@
 package com.example.pokedex.ui.pokemons.create
 
 import android.os.Bundle
+import android.text.InputFilter
+import android.text.Spanned
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +15,7 @@ import com.example.pokedex.R
 import com.example.pokedex.dao.AuthDao
 import com.example.pokedex.databinding.FragmentCreatePokemonBinding
 import com.example.pokedex.model.CreatedPokemon
+import com.example.pokedex.model.apiModel.Pokemon
 import com.squareup.picasso.Picasso
 
 class CreatePokemonFragment : Fragment() {
@@ -36,13 +39,71 @@ class CreatePokemonFragment : Fragment() {
             val natArray = ArrayList<String>()
 
             for(n in it){
-                natArray.add(n.name)
+                natArray.add("${n.name} (+${n.increased_stat?.name}/-${n.decreased_stat?.name})")
             }
 
             val spinnernat: Spinner = binding.spinnerNat
             val natArrayAdapter: ArrayAdapter<String> =
                 ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_dropdown_item, natArray)
             spinnernat.adapter = natArrayAdapter
+            spinnernat
+                .onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(
+                        p0: AdapterView<*>?,
+                        p1: View?,
+                        p2: Int,
+                        p3: Long
+                    ) {
+                        val selectednature = nature(p2)
+                        val atkplus = listOf("lonely","brave","adamant","naughty")
+                        val defplus = listOf("bold", "relaxed", "impish", "lax")
+                        val speedplus = listOf("timid", "hasty", "jolly", "naive")
+                        val spatkplus = listOf("modest", "mild", "quiet", "rash")
+                        val spdefplus = listOf("calm", "gentle", "sassy", "careful")
+                        val atkminus = listOf("bold","timid", "modest", "calm" )
+                        val defminus = listOf("lonely", "hasty", "mild", "gentle")
+                        val speedminus = listOf("brave", "relaxed", "quiet", "sassy")
+                        val spatkminus = listOf("adamant", "impish", "jolly", "careful")
+                        val spdefminus = listOf("naughty", "lax", "naive", "rash")
+                        //increasestat
+                        if(atkplus.contains(selectednature)){
+                            binding.tvAtknum.text = ((binding.tvAtknum.text.toString().toInt())*1.1).toInt().toString()
+                        }
+                        if(defplus.contains(selectednature)){
+                            binding.tvDefnum.text = ((binding.tvDefnum.text.toString().toInt())*1.1).toInt().toString()
+                        }
+                        if(speedplus.contains(selectednature)){
+                            binding.tvSpeednum.text = ((binding.tvSpeednum.text.toString().toInt())*1.1).toInt().toString()
+                        }
+                        if(spatkplus.contains(selectednature)){
+                            binding.tvSpatknum.text = ((binding.tvSpatknum.text.toString().toInt())*1.1).toInt().toString()
+                        }
+                        if(spdefplus.contains(selectednature)){
+                            binding.tvSpdefnum.text = ((binding.tvSpdefnum.text.toString().toInt())*1.1).toInt().toString()
+                        }
+                        //decreasestat
+                        if(atkminus.contains(selectednature)){
+                            binding.tvAtknum.text = ((binding.tvAtknum.text.toString().toInt())*0.9).toInt().toString()
+                        }
+                        if(defminus.contains(selectednature)){
+                            binding.tvDefnum.text = ((binding.tvDefnum.text.toString().toInt())*0.9).toInt().toString()
+                        }
+                        if(speedminus.contains(selectednature)){
+                            binding.tvSpeednum.text = ((binding.tvSpeednum.text.toString().toInt())*0.9).toInt().toString()
+                        }
+                        if(spatkminus.contains(selectednature)){
+                            binding.tvSpatknum.text = ((binding.tvSpatknum.text.toString().toInt())*0.9).toInt().toString()
+                        }
+                        if(spdefminus.contains(selectednature)){
+                            binding.tvSpdefnum.text = ((binding.tvSpdefnum.text.toString().toInt())*0.9).toInt().toString()
+                        }
+                    }
+
+                    override fun onNothingSelected(parent: AdapterView<*>?) {
+                        TODO("Not yet implemented")
+                    }
+                }
         }
 
         viewModel.pokemon.observe(viewLifecycleOwner) {
@@ -86,10 +147,13 @@ class CreatePokemonFragment : Fragment() {
                 listGames.add(game.name)
             }
             val spinnerGame : Spinner = binding.spinnerGame
-            val abiArrayAdapter: ArrayAdapter<String> =
-                ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_dropdown_item, listGames)
-            spinnerGame.adapter = abiArrayAdapter
+            val gameArrayAdapter: ArrayAdapter<String> =
+                ArrayAdapter<String>(requireContext(),
+                    android.R.layout.simple_spinner_dropdown_item,
+                    listGames)
+            spinnerGame.adapter = gameArrayAdapter
 
+            val earlygen = listOf("red-blue", "yellow", "gold-silver", "crystal")
             spinnerGame
                 .onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
@@ -99,13 +163,82 @@ class CreatePokemonFragment : Fragment() {
                         p2: Int,
                         p3: Long
                     ) {
-                        binding.acMove1.text.clear()
-                        binding.acMove2.text.clear()
-                        binding.acMove3.text.clear()
-                        binding.acMove4.text.clear()
-
-                        val versionGroup = viewModel.listGames.value?.get(p2)?.name!!.toString()
+                        val versionGroup = versionGroup(p2)
                         val pokemon = viewModel.pokemon.value
+                        moveBindingSetup(pokemon, versionGroup)
+
+                        val hp = pokemon!!.stats[0].base_stat
+                        val attack = pokemon.stats[1].base_stat
+                        val defense = pokemon.stats[2].base_stat
+                        val spAttack = pokemon.stats[3].base_stat
+                        var spDefense = pokemon.stats[4].base_stat
+                        var speed = pokemon.stats[5].base_stat
+                        binding.inputHpev.filters = arrayOf(MinMaxFilter(0,255))
+                        binding.inputAtkev.filters = arrayOf(MinMaxFilter(0,255))
+                        binding.inputDefev.filters = arrayOf(MinMaxFilter(0,255))
+                        binding.inputSpatkev.filters = arrayOf(MinMaxFilter(0,255))
+                        binding.inputSpdefev.filters = arrayOf(MinMaxFilter(0,255))
+                        binding.inputSpdev.filters = arrayOf(MinMaxFilter(0,255))
+
+                        if(earlygen.contains(versionGroup)){
+                            spDefense = spAttack
+                            //hpfilter
+                            binding.inputHpiv.filters = arrayOf(MinMaxFilter(0,15))
+                            //atkfilter
+                            binding.inputAtkiv.filters = arrayOf(MinMaxFilter(0,15))
+                            //deffilter
+                            binding.inputDefiv.filters = arrayOf(MinMaxFilter(0,15))
+                            //spfilter
+                            binding.inputSpatkiv.filters = arrayOf(MinMaxFilter(0,15))
+                            binding.inputSpdefiv.filters = arrayOf(MinMaxFilter(0,15))
+                            //speedfilter
+                            binding.inputSpdiv.filters = arrayOf(MinMaxFilter(0,15))
+
+                            val hpcalc = ((((((hp + hpiv().toInt())*2)+hpev().toInt())*lvl().toInt())/100)+lvl().toInt()+10)
+                            val atkcalc = ((((((attack + atkiv().toInt())*2)+atkev().toInt())*lvl().toInt())/100)+5)
+                            val defcalc = ((((((defense + defiv().toInt())*2)+defev().toInt())*lvl().toInt())/100)+5)
+                            val spatkcalc = ((((((spAttack + spatkiv().toInt())*2)+spatkev().toInt())*lvl().toInt())/100)+5)
+                            val spdefcalc = ((((((spDefense + spdefiv().toInt())*2)+spdefev().toInt())*lvl().toInt())/100)+5)
+                            val speedcalc = ((((((speed + speediv().toInt())*2)+speedev().toInt())*lvl().toInt())/100)+5)
+                            binding.tvHpnum.text = hpcalc.toString()
+                            binding.tvAtknum.text = atkcalc.toString()
+                            binding.tvDefnum.text = defcalc.toString()
+                            binding.tvSpatknum.text = spatkcalc.toString()
+                            binding.tvSpdefnum.text = spdefcalc.toString()
+                            binding.tvSpeednum.text = speedcalc.toString()
+                        }else{
+                            //hpfilter
+                            binding.inputHpiv.filters = arrayOf(MinMaxFilter(1,31))
+                            //atkfilter
+                            binding.inputAtkiv.filters = arrayOf(MinMaxFilter(1,31))
+                            //deffilter
+                            binding.inputDefiv.filters = arrayOf(MinMaxFilter(1,31))
+                            //spfilter
+                            binding.inputSpatkiv.filters = arrayOf(MinMaxFilter(1,31))
+                            binding.inputSpdefiv.filters = arrayOf(MinMaxFilter(1,31))
+                            //speedfilter
+                            binding.inputSpdiv.filters = arrayOf(MinMaxFilter(1,31))
+
+                            val hpcalc = ((((((2*hp)+hpiv().toInt()+(hpev().toInt()/4))*lvl().toInt()))/100)+lvl().toInt()+10)
+                            binding.tvHpnum.text = hpcalc.toString()
+                            val atkcalc = ((((((2*attack)+atkiv().toInt()+(atkev().toInt()/4))*lvl().toInt()))/100)+5)
+                            val defcalc = (((((2*defense)+defiv().toInt()+(defev().toInt()/4))*lvl().toInt())/100)+5)
+                            val spatkcalc = (((((2*spAttack)+spatkiv().toInt()+(spatkev().toInt()/4))*lvl().toInt())/100)+5)
+                            val spdefcalc = (((((2*spDefense)+spdefiv().toInt()+(spdefev().toInt()/4))*lvl().toInt())/100)+5)
+                            val speedcalc = ((((((2*speed)+speediv().toInt())+(speedev().toInt()/4))*lvl().toInt())/100)+5)
+                            binding.tvAtknum.text = atkcalc.toString()
+                            binding.tvDefnum.text = defcalc.toString()
+                            binding.tvSpatknum.text = spatkcalc.toString()
+                            binding.tvSpdefnum.text = spdefcalc.toString()
+                            binding.tvSpeednum.text = speedcalc.toString()
+
+                        }
+                    }
+
+                    private fun moveBindingSetup(
+                        pokemon: Pokemon?,
+                        versionGroup: String
+                    ) {
                         val listMoves = arrayListOf<String>()
                         for (move in pokemon!!.moves) {
                             for (versionG in move.version_group_details) {
@@ -139,6 +272,18 @@ class CreatePokemonFragment : Fragment() {
                         ).show()
                     }
                 }
+        }
+
+        var gendername = true
+        binding.ivPkmnGender.setOnClickListener {
+            val genderimg = binding.ivPkmnGender
+            if (gendername == true){
+                gendername = false
+                genderimg.setImageResource(R.drawable.ic_baseline_female_24)
+            }else{
+                gendername = true
+                genderimg.setImageResource(R.drawable.ic_baseline_male_24)
+            }
         }
 
         binding.btnSalvarPokemon.setOnClickListener {
@@ -192,5 +337,122 @@ class CreatePokemonFragment : Fragment() {
         }
 
         return view
+    }
+
+    private fun nature(p2: Int): String {
+        return viewModel.listNature.value?.get(p2)?.name!!.toString()
+    }
+
+    private fun speedev(): String {
+        return if(binding.inputSpdev.text!!.isNotEmpty())
+            binding.inputSpdev.text.toString()
+        else "0"
+    }
+
+    private fun spdefev(): String {
+        return if(binding.inputSpdefev.text!!.isNotEmpty())
+            binding.inputSpdefev.text.toString()
+        else "0"
+    }
+
+    private fun spatkev(): String {
+        return if(binding.inputSpatkev.text!!.isNotEmpty())
+            binding.inputSpatkev.text.toString()
+        else "0"
+    }
+
+    private fun defev(): String {
+        return if(binding.inputDefev.text!!.isNotEmpty())
+            binding.inputDefev.text.toString()
+        else "0"
+    }
+
+    private fun atkev(): String {
+        return if(binding.inputAtkev.text!!.isNotEmpty())
+            binding.inputAtkev.text.toString()
+        else "0"
+    }
+
+    private fun hpev(): String {
+        return if(binding.inputHpev.text!!.isNotEmpty())
+            binding.inputHpev.text.toString()
+        else "0"
+    }
+
+    private fun speediv(): String {
+        return if(binding.inputSpdiv.text!!.isNotEmpty())
+            binding.inputSpdiv.text.toString()
+        else "31"
+    }
+
+    private fun spdefiv(): String {
+        return if(binding.inputSpdefiv.text!!.isNotEmpty())
+            binding.inputSpdefiv.text.toString()
+        else "31"
+    }
+
+    private fun spatkiv(): String {
+        return if(binding.inputSpatkiv.text!!.isNotEmpty())
+            binding.inputSpatkiv.text.toString()
+        else "31"
+    }
+
+    private fun defiv(): String {
+        return if(binding.inputDefiv.text!!.isNotEmpty())
+            binding.inputDefiv.text.toString()
+        else "31"
+    }
+
+    private fun atkiv(): String {
+        return if(binding.inputAtkiv.text!!.isNotEmpty())
+            binding.inputAtkiv.text.toString()
+        else "31"
+    }
+
+    private fun hpiv(): String {
+        return if(binding.inputHpiv.text!!.isNotEmpty())
+            binding.inputHpiv.text.toString()
+        else "31"
+    }
+
+    private fun lvl(): String {
+        return if(binding.inputLvl.text!!.isNotEmpty())
+            binding.inputLvl.text.toString()
+        else "100"
+    }
+
+    private fun versionGroup(p2: Int): String {
+        val versionGroup = viewModel.listGames.value?.get(p2)?.name!!.toString()
+        return versionGroup
+    }
+
+    // Custom class to define min and max for the edit text
+    inner class MinMaxFilter() : InputFilter {
+        private var intMin: Int = 0
+        private var intMax: Int = 0
+
+        // Initialized
+        constructor(minValue: Int, maxValue: Int) : this() {
+            this.intMin = minValue
+            this.intMax = maxValue
+        }
+
+        override fun filter(source: CharSequence, start: Int, end: Int, dest: Spanned, dStart: Int, dEnd: Int): CharSequence? {
+            try {
+                val input = Integer.parseInt(dest.toString() + source.toString())
+                if (isInRange(intMin, intMax, input)) {
+                    return null
+                }
+            } catch (e: NumberFormatException) {
+                e.printStackTrace()
+            }
+            return ""
+        }
+
+        // Check if input c is in between min a and max b and
+        // returns corresponding boolean
+        private fun isInRange(a: Int, b: Int, c: Int): Boolean {
+            return if (b > a) c in a..b else c in b..a
+        }
     }
 }

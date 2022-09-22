@@ -17,25 +17,28 @@ interface PokemonsServices {
     suspend fun getSpecies(@Path("id") id: String) : PokemonSpecies
 
     @GET("ability/{name}/")
-    suspend fun getAbility(@Path("name") id: String) : Ability
+    suspend fun getAbility(@Path("name") name: String) : Ability
 
     @GET("pokemon-form/{name}/")
-    suspend fun getForm(@Path("name") id: String) : PokemonForm
+    suspend fun getForm(@Path("name") name: String) : PokemonForm
 
     @GET("move/{name}/")
-    suspend fun getMove(@Path("name") id: String) : Move
+    suspend fun getMove(@Path("name") name: String) : Move
 
     @GET("stat/{name}/")
-    suspend fun getStat(@Path("name") id: String) : Stat
+    suspend fun getStat(@Path("name") name: String) : Stat
 
     @GET("type/{name}/")
-    suspend fun getType(@Path("name") id: String) : Type
+    suspend fun getType(@Path("name") name: String) : Type
 
     @GET("item/{name}/")
-    suspend fun getItem (@Path("name") id: String) : Item
+    suspend fun getItem (@Path("name") name: String) : Item
 
     @GET("nature")
-    suspend fun getNature () : PokemonNature
+    suspend fun getNatures () : PokemonNature
+
+    @GET("nature/{name}/")
+    suspend fun getNature(@Path("name") name: String) : Nature
 
     @GET("item?limit=1610")
     suspend fun getItens() : PokemonItem

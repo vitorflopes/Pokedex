@@ -34,10 +34,10 @@ class CreatePokemonViewModel : ViewModel() {
             val helpListMove = arrayListOf<Move>()
             val helpListStat = arrayListOf<Stat>()
             val helpListType = arrayListOf<Type>()
+            val helpListNature = arrayListOf<Nature>()
 
             pokemon.value = RetroFit.pokemonsService(context).getPokemon(pokemonName)
             species.value = RetroFit.pokemonsService(context).getSpecies(pokemon.value!!.id.toString())
-            listNature.value = RetroFit.pokemonsService(context).getNature().results
             listItens.value = RetroFit.pokemonsService(context).getItens().results
             listGames.value = RetroFit.pokemonsService(context).getGames().results
 
@@ -64,6 +64,12 @@ class CreatePokemonViewModel : ViewModel() {
                 helpListType.add(tp)
             }
             listTypes.value = helpListType
+
+            for (nature in RetroFit.pokemonsService(context).getNatures().results) {
+                val ntr = RetroFit.pokemonsService(context).getNature(nature.name)
+                helpListNature.add(ntr)
+            }
+            listNature.value = helpListNature
         }
     }
 
