@@ -339,8 +339,12 @@ class CreatePokemonFragment : Fragment() {
             val speedev2 = speedev()
 
 
+            val spriteFront = viewModel.pokemon.value!!.sprites.front_default.toString()
+            val spriteBack = viewModel.pokemon.value!!.sprites.back_default.toString()
+            val color = viewModel.species.value!!.color.name
+
             val pokemon =
-                CreatedPokemon(viewModel.pokemon.value!!.sprites.front_default.toString() ,viewModel.pokemon.value!!.sprites.back_default.toString() , nickname, species, lvl, gender, ability, item, iv, ev, nature, moves, idUsuario)
+                CreatedPokemon(spriteFront , spriteBack, nickname, species, color, lvl, gender, ability, item, iv, ev, nature, moves, idUsuario)
 
             viewModel.inserirPokemon(pokemon)
         }

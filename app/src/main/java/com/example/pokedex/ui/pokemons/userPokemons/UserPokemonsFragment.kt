@@ -57,6 +57,13 @@ class UserPokemonsFragment : Fragment() {
                     }
                 })
             }
+
+            else {
+                binding.progressBar4.isVisible = false
+
+                binding.textView13.isVisible = true
+                binding.btnCriarPokemon.isVisible = true
+            }
         }
 
         viewModel.msg.observe(viewLifecycleOwner) {
@@ -66,6 +73,10 @@ class UserPokemonsFragment : Fragment() {
 
         binding.btnVoltarUserPokemons.setOnClickListener {
             findNavController().popBackStack()
+        }
+
+        binding.btnCriarPokemon.setOnClickListener {
+            findNavController().navigate(R.id.allPokemonsFragment)
         }
 
         return view

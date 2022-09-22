@@ -6,6 +6,7 @@ class CreatedPokemon(
     val spriteBack: String? = null,
     val nickname: String? = null,
     val species: String? = null,
+    val color: String? = null,
     val lvl: String? = null,
     val gender: Boolean? = null,
     val ability: String? = null,
