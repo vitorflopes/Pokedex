@@ -103,5 +103,14 @@
         android:id="@+id/userPokemonsFragment"
         android:name="com.example.pokedex.ui.pokemons.userPokemons.UserPokemonsFragment"
         android:label="fragment_user_pokemons"
-        tools:layout="@layout/fragment_user_pokemons" />
+        tools:layout="@layout/fragment_user_pokemons" >
+        <action
+            android:id="@+id/action_userPokemonsFragment_to_detalhesPokemonFragment"
+            app:destination="@id/detalhesPokemonFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalhesPokemonFragment"
+        android:name="com.example.pokedex.ui.pokemons.detalhes.DetalhesPokemonFragment"
+        android:label="fragment_detalhes_pokemon"
+        tools:layout="@layout/fragment_detalhes_pokemon" />
 </navigation>
