@@ -352,7 +352,7 @@ class CreatePokemonFragment : Fragment() {
         viewModel.status.observe(viewLifecycleOwner) {
             if (it) {
                 Toast.makeText(context, "Pokemon criado!", Toast.LENGTH_LONG).show()
-                findNavController().popBackStack()
+                findNavController().navigate(R.id.perfilFragment)
             }
         }
 
