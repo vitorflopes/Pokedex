@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pokedex.R
+import com.example.pokedex.adapter.AdapterCreatedPokemon
 import com.example.pokedex.adapter.AdapterPokemon
 import com.example.pokedex.databinding.FragmentUserPokemonsBinding
 import com.example.pokedex.ui.pokemons.form.AllPokemonsFragmentDirections
@@ -32,8 +35,37 @@ class UserPokemonsFragment : Fragment() {
 
         viewModel.retornaPokemonsUser()
 
+        binding.rvPokemonsUser.layoutManager = LinearLayoutManager(context)
+        //binding.rvPokemons.layoutManager = GridLayoutManager(context, 2)
+        binding.rvPokemonsUser.setHasFixedSize(true)
         viewModel.pokemonsList.observe(viewLifecycleOwner) {
-            val listUserPokemons = it
+            if (it.isNotEmpty()) {
+                binding.progressBar4.isVisible = false
+
+                val lac = LayoutAnimationController(AnimationUtils.loadAnimation(context, R.anim.item_anim))
+                lac.delay = 0.10f
+                lac.order = LayoutAnimationController.ORDER_NORMAL
+
+                val adapterPokemon = AdapterCreatedPokemon(requireContext(), it)
+                binding.rvPokemonsUser.layoutAnimation = lac
+                binding.rvPokemonsUser.adapter = adapterPokemon
+                adapterPokemon.setOnItemClickListener(object : AdapterCreatedPokemon.onItemClickListener {
+                    override fun onItemClick(position: Int) {
+                        val pokemonName = it[position].nickname
+
+                        //Fazer a direção
+                    }
+                })
+            }
+        }
+
+        viewModel.msg.observe(viewLifecycleOwner) {
+            binding.progressBar4.isVisible = false
+            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+        }
+
+        binding.btnVoltarUserPokemons.setOnClickListener {
+            findNavController().popBackStack()
         }
 
         return view

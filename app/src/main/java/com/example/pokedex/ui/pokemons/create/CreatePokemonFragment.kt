@@ -323,8 +323,24 @@ class CreatePokemonFragment : Fragment() {
 
             val idUsuario = AuthDao.getCurrentUser()!!.uid
 
+
+            val lvl2 = lvl()
+            val hpiv2 = hpiv()
+            val atkiv2 = atkiv()
+            val defiv2 = defiv()
+            val spatkiv2 = spatkiv()
+            val spdefiv2 = spdefiv()
+            val speediv2 = speediv()
+            val hpev2 = hpev()
+            val atkev2 = atkev()
+            val defev2 = defev()
+            val spatkev2 = spatkev()
+            val spdefev2 = spdefev()
+            val speedev2 = speedev()
+
+
             val pokemon =
-                CreatedPokemon(viewModel.pokemon.value!!.sprites.front_default, nickname, species, lvl, gender, ability, item, iv, ev, nature, moves, idUsuario)
+                CreatedPokemon(viewModel.pokemon.value!!.sprites.front_default.toString() ,viewModel.pokemon.value!!.sprites.back_default.toString() , nickname, species, lvl, gender, ability, item, iv, ev, nature, moves, idUsuario)
 
             viewModel.inserirPokemon(pokemon)
         }

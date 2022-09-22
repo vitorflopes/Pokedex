@@ -8,7 +8,7 @@ import com.example.pokedex.model.CreatedPokemon
 
 class UserPokemonsViewModel : ViewModel() {
 
-    var pokemonsList = MutableLiveData<List<CreatedPokemon>>()
+    var pokemonsList = MutableLiveData<MutableList<CreatedPokemon>>()
     val msg = MutableLiveData<String>()
 
     fun retornaPokemonsUser() {

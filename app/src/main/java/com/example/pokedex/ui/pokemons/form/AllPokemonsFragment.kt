@@ -57,6 +57,10 @@ class AllPokemonsFragment : Fragment() {
             }
         }
 
+        binding.btnVoltarAllPokemons.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         return view
     }
 }
