@@ -30,7 +30,7 @@ class CreatePokemonFragment : Fragment() {
         val view = binding.root
         viewModel = ViewModelProvider(this).get(CreatePokemonViewModel()::class.java)
 
-        viewModel.retornaPokemon(argumentos.pokemonName)
+        viewModel.retornaPokemon(argumentos.pokemonName, requireContext())
 
         viewModel.listNature.observe(viewLifecycleOwner) {
             val natArray = ArrayList<String>()

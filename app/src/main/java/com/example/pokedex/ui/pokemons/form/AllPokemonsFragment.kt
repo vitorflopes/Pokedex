@@ -28,7 +28,7 @@ class AllPokemonsFragment : Fragment() {
     ): View? {
         _binding = FragmentAllPokemonsBinding.inflate(inflater, container, false)
         val view = binding.root
-        viewModel = ViewModelProvider(this).get(AllPokemonsViewModel::class.java)
+        viewModel = ViewModelProvider(this, AllPokemonsVMF(requireContext())).get(AllPokemonsViewModel::class.java)
 
         binding.rvPokemons.layoutManager = LinearLayoutManager(context)
         //binding.rvPokemons.layoutManager = GridLayoutManager(context, 2)

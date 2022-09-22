@@ -1,5 +1,6 @@
 package com.example.pokedex.ui.pokemons.create
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -27,39 +28,39 @@ class CreatePokemonViewModel : ViewModel() {
     var listNature = MutableLiveData<List<Nature>>()
     var listGames = MutableLiveData<List<VersionGroup>>()
 
-    fun retornaPokemon(pokemonName: String) {
+    fun retornaPokemon(pokemonName: String, context: Context) {
         viewModelScope.launch {
             val helpListAbility = arrayListOf<Ability>()
             val helpListMove = arrayListOf<Move>()
             val helpListStat = arrayListOf<Stat>()
             val helpListType = arrayListOf<Type>()
 
-            pokemon.value = RetroFit.pokemonsService.getPokemon(pokemonName)
-            species.value = RetroFit.pokemonsService.getSpecies(pokemon.value!!.id.toString())
-            listNature.value = RetroFit.pokemonsService.getNature().results
-            listItens.value = RetroFit.pokemonsService.getItens().results
-            listGames.value = RetroFit.pokemonsService.getGames().results
+            pokemon.value = RetroFit.pokemonsService(context).getPokemon(pokemonName)
+            species.value = RetroFit.pokemonsService(context).getSpecies(pokemon.value!!.id.toString())
+            listNature.value = RetroFit.pokemonsService(context).getNature().results
+            listItens.value = RetroFit.pokemonsService(context).getItens().results
+            listGames.value = RetroFit.pokemonsService(context).getGames().results
 
             for (ability in pokemon.value!!.abilities) {
-                val ablt = RetroFit.pokemonsService.getAbility(ability.ability.name)
+                val ablt = RetroFit.pokemonsService(context).getAbility(ability.ability.name)
                 helpListAbility.add(ablt)
             }
             listAbilities.value = helpListAbility
 
             for (move in pokemon.value!!.moves) {
-                val mv = RetroFit.pokemonsService.getMove(move.move.name)
+                val mv = RetroFit.pokemonsService(context).getMove(move.move.name)
                 helpListMove.add(mv)
             }
             listMoves.value = helpListMove
 
             for (stat in pokemon.value!!.stats) {
-                val stt = RetroFit.pokemonsService.getStat(stat.stat.name)
+                val stt = RetroFit.pokemonsService(context).getStat(stat.stat.name)
                 helpListStat.add(stt)
             }
             listStats.value = helpListStat
 
             for (type in pokemon.value!!.types) {
-                val tp = RetroFit.pokemonsService.getType(type.type.name)
+                val tp = RetroFit.pokemonsService(context).getType(type.type.name)
                 helpListType.add(tp)
             }
             listTypes.value = helpListType

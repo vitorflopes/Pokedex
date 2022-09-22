@@ -29,7 +29,7 @@ class PokemonFormFragment : Fragment() {
         val view = binding.root
         viewModel = ViewModelProvider(this).get(PokemonFormViewModel()::class.java)
 
-        viewModel.retornaPokemon(argumentos.pokemonName)
+        viewModel.retornaPokemon(argumentos.pokemonName, requireContext())
 
         viewModel.pokemon.observe(viewLifecycleOwner) {
             Picasso.get().load(it.sprites.front_default).into(binding.ivDexImg)
