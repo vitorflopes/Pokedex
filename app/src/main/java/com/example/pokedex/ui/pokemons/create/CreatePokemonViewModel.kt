@@ -16,12 +16,12 @@ class CreatePokemonViewModel : ViewModel() {
     val msg = MutableLiveData<String>()
 
     var pokemon = MutableLiveData<Pokemon>()
+    var item = MutableLiveData<Item>()
     var species = MutableLiveData<PokemonSpecies>()
     val game = MutableLiveData<VersionGroup>()
 
     var listItens = MutableLiveData<List<Item>>()
     var listAbilities = MutableLiveData<List<Ability>>()
-    var listHeldItems = MutableLiveData<List<Item>>()
     var listMoves = MutableLiveData<List<Move>>()
     var listStats = MutableLiveData<List<Stat>>()
     var listTypes = MutableLiveData<List<Type>>()
@@ -70,6 +70,12 @@ class CreatePokemonViewModel : ViewModel() {
                 helpListNature.add(ntr)
             }
             listNature.value = helpListNature
+        }
+    }
+
+    fun retornaItem (itemName: String, context: Context) {
+        viewModelScope.launch {
+            item.value = RetroFit.pokemonsService(context).getItem(itemName)
         }
     }
 

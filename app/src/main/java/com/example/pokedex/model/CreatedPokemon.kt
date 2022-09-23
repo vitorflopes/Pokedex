@@ -11,6 +11,7 @@ class CreatedPokemon(
     val gender: Boolean? = null,
     val ability: String? = null,
     val item: String? = null,
+    val spriteItem: String? = null,
     val iv: List<String>? = null,
     val ev: List<String>? = null,
     val nature: String? = null,
