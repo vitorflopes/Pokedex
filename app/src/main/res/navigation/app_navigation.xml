@@ -22,7 +22,8 @@
         tools:layout="@layout/fragment_sign_in" >
         <action
             android:id="@+id/action_signInFragment_to_perfilFragment"
-            app:destination="@id/perfilFragment" />
+            app:destination="@id/perfilFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
@@ -32,9 +33,6 @@
         android:name="com.example.pokedex.ui.perfil.PerfilFragment"
         android:label="PerfilFragment"
         tools:layout="@layout/fragment_perfil" >
-        <argument
-            android:name="campeaoId"
-            app:argType="long" />
         <action
             android:id="@+id/action_perfilFragment_to_editarFragment"
             app:destination="@id/editarFragment" />
@@ -50,6 +48,10 @@
         <action
             android:id="@+id/action_perfilFragment_to_userPokemonsFragment"
             app:destination="@id/userPokemonsFragment" />
+        <action
+            android:id="@+id/action_perfilFragment_to_signInFragment"
+            app:destination="@id/signInFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/editarFragment"

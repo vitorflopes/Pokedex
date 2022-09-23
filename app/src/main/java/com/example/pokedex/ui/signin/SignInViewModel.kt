@@ -3,6 +3,7 @@ package com.example.pokedex.ui.signin
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.pokedex.dao.AuthDao
+import com.google.firebase.auth.FirebaseUser
 
 class SignInViewModel : ViewModel() {
 
@@ -42,5 +43,9 @@ class SignInViewModel : ViewModel() {
             }
         }
         */
+    }
+
+    fun retornaUsuarioLogado(): FirebaseUser? {
+        return AuthDao.getCurrentUser()
     }
 }

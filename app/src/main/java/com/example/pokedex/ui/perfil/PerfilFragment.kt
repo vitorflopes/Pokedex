@@ -64,10 +64,10 @@ class PerfilFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-
-        val user = AuthDao.getCurrentUser()
+        val user = viewModel.retornaUsuarioLogado()
         if (user == null) {
-            findNavController().navigate(R.id.signInFragment)
+            val direction = PerfilFragmentDirections.actionPerfilFragmentToSignInFragment()
+            findNavController().navigate(direction)
         }
     }
 }

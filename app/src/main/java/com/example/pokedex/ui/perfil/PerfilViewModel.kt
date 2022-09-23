@@ -6,6 +6,7 @@ import com.example.pokedex.dao.AuthDao
 import com.example.pokedex.dao.CampeaoDao
 import com.example.pokedex.dao.PokemonDao
 import com.example.pokedex.model.Campeao
+import com.google.firebase.auth.FirebaseUser
 
 class PerfilViewModel : ViewModel() {
 
@@ -32,5 +33,9 @@ class PerfilViewModel : ViewModel() {
         }.addOnFailureListener {
             msg.value = it.message
         }
+    }
+
+    fun retornaUsuarioLogado(): FirebaseUser? {
+        return AuthDao.getCurrentUser()
     }
 }

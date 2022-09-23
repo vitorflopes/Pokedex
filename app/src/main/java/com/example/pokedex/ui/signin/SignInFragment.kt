@@ -112,4 +112,13 @@ class SignInFragment : Fragment() {
             apply()
         }
     }
+
+    override fun onStart() {
+        super.onStart()
+        val currentUser = viewModel.retornaUsuarioLogado()
+        if (currentUser != null) {
+            val direction = SignInFragmentDirections.actionSignInFragmentToPerfilFragment()
+            findNavController().navigate(direction)
+        }
+    }
 }
