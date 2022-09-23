@@ -15,7 +15,6 @@ import com.example.pokedex.R
 import com.example.pokedex.databinding.FragmentSignInBinding
 import com.google.android.gms.ads.*
 import com.google.android.material.snackbar.Snackbar
-import com.squareup.picasso.Picasso
 
 class SignInFragment : Fragment() {
 
@@ -33,10 +32,10 @@ class SignInFragment : Fragment() {
         val view = binding.root
         viewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
 
-        MobileAds.initialize(requireContext()) {}
-
+        MobileAds.initialize(requireContext())
+        mAdView = binding.adView
         val adRequest = AdRequest.Builder().build()
-        binding.adView.loadAd(adRequest)
+        mAdView.loadAd(adRequest)
 
         binding.adView.adListener = object: AdListener() {
             override fun onAdClicked() {
