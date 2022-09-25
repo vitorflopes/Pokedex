@@ -42,6 +42,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clCardPokemonDP"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
@@ -62,7 +63,7 @@
                             app:layout_constraintGuide_begin="0dp" />
 
                         <ImageView
-                            android:id="@+id/imageView4"
+                            android:id="@+id/ivSpritePokemonDP"
                             android:layout_width="130dp"
                             android:layout_height="130dp"
                             android:layout_marginBottom="2dp"
@@ -72,7 +73,7 @@
                             app:layout_constraintStart_toStartOf="parent" />
 
                         <ImageButton
-                            android:id="@+id/imageButton"
+                            android:id="@+id/btnVoltarDP"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -93,7 +94,7 @@
                     app:layout_constraintGuide_begin="146dp" />
 
                 <TextView
-                    android:id="@+id/textView14"
+                    android:id="@+id/tvSpeciesDP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"
@@ -106,7 +107,7 @@
                     app:layout_constraintTop_toTopOf="@+id/guideline11" />
 
                 <TextView
-                    android:id="@+id/textView15"
+                    android:id="@+id/tvHbilidadeDP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"
@@ -119,7 +120,59 @@
                     app:layout_constraintTop_toTopOf="@+id/guideline11" />
 
                 <TextView
-                    android:id="@+id/textView19"
+                    android:id="@+id/tvMove3DP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Move3"
+                    android:textColor="@color/azul_pokedex"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintStart_toStartOf="@+id/guideline15"
+                    app:layout_constraintTop_toTopOf="@+id/textView57" />
+
+                <TextView
+                    android:id="@+id/tvMove1DP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Move1"
+                    android:textColor="@color/azul_pokedex"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintStart_toStartOf="@+id/guideline14"
+                    app:layout_constraintTop_toTopOf="@+id/textView57" />
+
+                <TextView
+                    android:id="@+id/tvMove2DP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="Move2"
+                    android:textColor="@color/azul_pokedex"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView57"
+                    app:layout_constraintStart_toStartOf="@+id/guideline14" />
+
+                <TextView
+                    android:id="@+id/tvMove4DP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="Move4"
+                    android:textColor="@color/azul_pokedex"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView57"
+                    app:layout_constraintStart_toStartOf="@+id/guideline15" />
+
+                <TextView
+                    android:id="@+id/tvNatureDP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"
@@ -152,7 +205,7 @@
                     android:background="@color/azul_pokedex"
                     app:layout_constraintBottom_toBottomOf="@+id/textView22"
                     app:layout_constraintStart_toStartOf="@+id/guideline14"
-                    app:layout_constraintTop_toTopOf="@+id/textView15" />
+                    app:layout_constraintTop_toTopOf="@+id/tvHbilidadeDP" />
 
                 <TextView
                     android:id="@+id/textView23"
@@ -161,7 +214,7 @@
                     android:background="@color/azul_pokedex"
                     app:layout_constraintBottom_toBottomOf="@+id/textView22"
                     app:layout_constraintEnd_toStartOf="@+id/guideline15"
-                    app:layout_constraintTop_toTopOf="@+id/textView15" />
+                    app:layout_constraintTop_toTopOf="@+id/tvHbilidadeDP" />
 
                 <TextView
                     android:id="@+id/textView21"
@@ -170,9 +223,9 @@
                     android:layout_marginTop="2dp"
                     android:text="Species"
                     android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="@+id/textView14"
-                    app:layout_constraintStart_toStartOf="@+id/textView14"
-                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
+                    app:layout_constraintEnd_toEndOf="@+id/tvSpeciesDP"
+                    app:layout_constraintStart_toStartOf="@+id/tvSpeciesDP"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSpeciesDP" />
 
                 <TextView
                     android:id="@+id/textView48"
@@ -181,9 +234,9 @@
                     android:layout_marginTop="4dp"
                     android:text="HP"
                     android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="@+id/textView42"
-                    app:layout_constraintStart_toStartOf="@+id/textView42"
-                    app:layout_constraintTop_toBottomOf="@+id/textView42" />
+                    app:layout_constraintEnd_toEndOf="@+id/tvEvHpDP"
+                    app:layout_constraintStart_toStartOf="@+id/tvEvHpDP"
+                    app:layout_constraintTop_toBottomOf="@+id/tvEvHpDP" />
 
                 <TextView
                     android:id="@+id/textView49"
@@ -192,9 +245,9 @@
                     android:layout_marginTop="4dp"
                     android:text="ATK"
                     android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="@+id/textView45"
-                    app:layout_constraintStart_toStartOf="@+id/textView45"
-                    app:layout_constraintTop_toBottomOf="@+id/textView45" />
+                    app:layout_constraintEnd_toEndOf="@+id/tvEvAtkDP"
+                    app:layout_constraintStart_toStartOf="@+id/tvEvAtkDP"
+                    app:layout_constraintTop_toBottomOf="@+id/tvEvAtkDP" />
 
                 <TextView
                     android:id="@+id/textView50"
@@ -203,9 +256,9 @@
                     android:layout_marginTop="4dp"
                     android:text="DEF"
                     android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="@+id/textView47"
-                    app:layout_constraintStart_toStartOf="@+id/textView47"
-                    app:layout_constraintTop_toBottomOf="@+id/textView47" />
+                    app:layout_constraintEnd_toEndOf="@+id/tvEvDefDP"
+                    app:layout_constraintStart_toStartOf="@+id/tvEvDefDP"
+                    app:layout_constraintTop_toBottomOf="@+id/tvEvDefDP" />
 
                 <TextView
                     android:id="@+id/textView51"
@@ -214,9 +267,9 @@
                     android:layout_marginTop="4dp"
                     android:text="SP.ATK"
                     android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="@+id/textView46"
-                    app:layout_constraintStart_toStartOf="@+id/textView46"
-                    app:layout_constraintTop_toBottomOf="@+id/textView46" />
+                    app:layout_constraintEnd_toEndOf="@+id/tvEvSpAtkDP"
+                    app:layout_constraintStart_toStartOf="@+id/tvEvSpAtkDP"
+                    app:layout_constraintTop_toBottomOf="@+id/tvEvSpAtkDP" />
 
                 <TextView
                     android:id="@+id/textView52"
@@ -225,9 +278,9 @@
                     android:layout_marginTop="4dp"
                     android:text="SP.DEF"
                     android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="@+id/textView44"
-                    app:layout_constraintStart_toStartOf="@+id/textView44"
-                    app:layout_constraintTop_toBottomOf="@+id/textView44" />
+                    app:layout_constraintEnd_toEndOf="@+id/tvEvSpDefDP"
+                    app:layout_constraintStart_toStartOf="@+id/tvEvSpDefDP"
+                    app:layout_constraintTop_toBottomOf="@+id/tvEvSpDefDP" />
 
                 <TextView
                     android:id="@+id/textView53"
@@ -236,9 +289,9 @@
                     android:layout_marginTop="4dp"
                     android:text="SPEED"
                     android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="@+id/textView43"
-                    app:layout_constraintStart_toStartOf="@+id/textView43"
-                    app:layout_constraintTop_toBottomOf="@+id/textView43" />
+                    app:layout_constraintEnd_toEndOf="@+id/tvEvSpeedDP"
+                    app:layout_constraintStart_toStartOf="@+id/tvEvSpeedDP"
+                    app:layout_constraintTop_toBottomOf="@+id/tvEvSpeedDP" />
 
                 <TextView
                     android:id="@+id/textView22"
@@ -247,9 +300,9 @@
                     android:layout_marginTop="2dp"
                     android:text="Habilidade"
                     android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="@+id/textView15"
-                    app:layout_constraintStart_toStartOf="@+id/textView15"
-                    app:layout_constraintTop_toBottomOf="@+id/textView15" />
+                    app:layout_constraintEnd_toEndOf="@+id/tvHbilidadeDP"
+                    app:layout_constraintStart_toStartOf="@+id/tvHbilidadeDP"
+                    app:layout_constraintTop_toBottomOf="@+id/tvHbilidadeDP" />
 
                 <TextView
                     android:id="@+id/textView24"
@@ -258,9 +311,9 @@
                     android:layout_marginTop="2dp"
                     android:text="Nature"
                     android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="@+id/textView19"
-                    app:layout_constraintStart_toStartOf="@+id/textView19"
-                    app:layout_constraintTop_toBottomOf="@+id/textView19" />
+                    app:layout_constraintEnd_toEndOf="@+id/tvNatureDP"
+                    app:layout_constraintStart_toStartOf="@+id/tvNatureDP"
+                    app:layout_constraintTop_toBottomOf="@+id/tvNatureDP" />
 
                 <TextView
                     android:id="@+id/textView25"
@@ -300,7 +353,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
                 <TextView
-                    android:id="@+id/textView43"
+                    android:id="@+id/tvEvSpeedDP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -313,7 +366,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView41" />
 
                 <TextView
-                    android:id="@+id/textView47"
+                    android:id="@+id/tvEvDefDP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -322,11 +375,11 @@
                     android:textColor="@color/azul_pokedex"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/textView45"
+                    app:layout_constraintStart_toEndOf="@+id/tvEvAtkDP"
                     app:layout_constraintTop_toBottomOf="@+id/textView41" />
 
                 <TextView
-                    android:id="@+id/textView46"
+                    android:id="@+id/tvEvSpAtkDP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -335,11 +388,11 @@
                     android:textColor="@color/azul_pokedex"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toStartOf="@+id/textView44"
+                    app:layout_constraintEnd_toStartOf="@+id/tvEvSpDefDP"
                     app:layout_constraintTop_toBottomOf="@+id/textView41" />
 
                 <TextView
-                    android:id="@+id/textView45"
+                    android:id="@+id/tvEvAtkDP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -348,11 +401,11 @@
                     android:textColor="@color/azul_pokedex"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/textView42"
+                    app:layout_constraintStart_toEndOf="@+id/tvEvHpDP"
                     app:layout_constraintTop_toBottomOf="@+id/textView41" />
 
                 <TextView
-                    android:id="@+id/textView44"
+                    android:id="@+id/tvEvSpDefDP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -361,11 +414,11 @@
                     android:textColor="@color/azul_pokedex"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toStartOf="@+id/textView43"
+                    app:layout_constraintEnd_toStartOf="@+id/tvEvSpeedDP"
                     app:layout_constraintTop_toBottomOf="@+id/textView41" />
 
                 <TextView
-                    android:id="@+id/textView42"
+                    android:id="@+id/tvEvHpDP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="38dp"
@@ -391,149 +444,168 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
                 <TextView
-                    android:id="@+id/textView40"
+                    android:id="@+id/textView33"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:text="000"
+                    android:layout_marginStart="32dp"
+                    android:text="Moves"
                     android:textColor="@color/azul_pokedex"
+                    android:textSize="24sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/progressBar10"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/progressBar10" />
+                    app:layout_constraintBottom_toBottomOf="@+id/textView57"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView57" />
 
                 <TextView
-                    android:id="@+id/textView38"
+                    android:id="@+id/tvSpeedDP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:text="000"
                     android:textColor="@color/azul_pokedex"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/progressBar9"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbSpeedDP"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/progressBar9" />
+                    app:layout_constraintTop_toTopOf="@+id/pbSpeedDP" />
 
                 <TextView
-                    android:id="@+id/textView37"
+                    android:id="@+id/tvSpDefenseDP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:text="000"
                     android:textColor="@color/azul_pokedex"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/progressBar8"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbSpDefenseDP"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/progressBar8" />
+                    app:layout_constraintTop_toTopOf="@+id/pbSpDefenseDP" />
 
                 <TextView
-                    android:id="@+id/textView36"
+                    android:id="@+id/tvSpAttackDP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:text="000"
                     android:textColor="@color/azul_pokedex"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/progressBar7"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbSpAttackDP"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/progressBar7" />
+                    app:layout_constraintTop_toTopOf="@+id/pbSpAttackDP" />
 
                 <TextView
-                    android:id="@+id/textView35"
+                    android:id="@+id/tvDefenseDP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:text="000"
                     android:textColor="@color/azul_pokedex"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/progressBar6"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbDefenseDP"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/progressBar6" />
+                    app:layout_constraintTop_toTopOf="@+id/pbDefenseDP" />
 
                 <TextView
-                    android:id="@+id/textView34"
+                    android:id="@+id/tvAttackDP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:text="000"
                     android:textColor="@color/azul_pokedex"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/progressBar5"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbAttackDP"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/progressBar5" />
+                    app:layout_constraintTop_toTopOf="@+id/pbAttackDP" />
+
+                <TextView
+                    android:id="@+id/tvHpDP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="000"
+                    android:textColor="@color/azul_pokedex"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/pbHpDP"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/pbHpDP" />
 
                 <ProgressBar
-                    android:id="@+id/progressBar10"
+                    android:id="@+id/pbSpeedDP"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
+                    android:max="255"
                     app:layout_constraintBottom_toBottomOf="@+id/textView31"
-                    app:layout_constraintEnd_toStartOf="@+id/textView40"
+                    app:layout_constraintEnd_toStartOf="@+id/tvSpeedDP"
                     app:layout_constraintStart_toEndOf="@+id/textView32"
                     app:layout_constraintTop_toTopOf="@+id/textView31" />
 
                 <ProgressBar
-                    android:id="@+id/progressBar9"
+                    android:id="@+id/pbSpDefenseDP"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
+                    android:max="255"
                     app:layout_constraintBottom_toBottomOf="@+id/textView30"
-                    app:layout_constraintEnd_toStartOf="@+id/textView38"
+                    app:layout_constraintEnd_toStartOf="@+id/tvSpDefenseDP"
                     app:layout_constraintStart_toEndOf="@+id/textView32"
                     app:layout_constraintTop_toTopOf="@+id/textView30"
                     app:layout_constraintVertical_bias="1.0" />
 
                 <ProgressBar
-                    android:id="@+id/progressBar8"
+                    android:id="@+id/pbSpAttackDP"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
+                    android:max="255"
                     app:layout_constraintBottom_toBottomOf="@+id/textView29"
-                    app:layout_constraintEnd_toStartOf="@+id/textView37"
+                    app:layout_constraintEnd_toStartOf="@+id/tvSpAttackDP"
                     app:layout_constraintStart_toEndOf="@+id/textView32"
                     app:layout_constraintTop_toTopOf="@+id/textView29" />
 
                 <ProgressBar
-                    android:id="@+id/progressBar7"
+                    android:id="@+id/pbDefenseDP"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
+                    android:max="255"
                     app:layout_constraintBottom_toBottomOf="@+id/textView28"
-                    app:layout_constraintEnd_toStartOf="@+id/textView36"
+                    app:layout_constraintEnd_toStartOf="@+id/tvDefenseDP"
                     app:layout_constraintStart_toEndOf="@+id/textView32"
                     app:layout_constraintTop_toTopOf="@+id/textView28" />
 
                 <ProgressBar
-                    android:id="@+id/progressBar6"
+                    android:id="@+id/pbAttackDP"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
+                    android:max="255"
                     app:layout_constraintBottom_toBottomOf="@+id/textView27"
-                    app:layout_constraintEnd_toStartOf="@+id/textView35"
+                    app:layout_constraintEnd_toStartOf="@+id/tvAttackDP"
                     app:layout_constraintStart_toEndOf="@+id/textView32"
                     app:layout_constraintTop_toTopOf="@+id/textView27" />
 
                 <ProgressBar
-                    android:id="@+id/progressBar5"
+                    android:id="@+id/pbHpDP"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView26"
-                    app:layout_constraintEnd_toStartOf="@+id/textView34"
+                    app:layout_constraintEnd_toStartOf="@+id/tvHpDP"
                     app:layout_constraintStart_toEndOf="@+id/textView32"
-                    app:layout_constraintTop_toTopOf="@+id/textView26" />
+                    app:layout_constraintTop_toTopOf="@+id/textView26"
+                    android:max="255" />
 
                 <TextView
                     android:id="@+id/textView32"
@@ -544,6 +616,15 @@
                     app:layout_constraintBottom_toBottomOf="@+id/textView31"
                     app:layout_constraintEnd_toStartOf="@+id/guideline14"
                     app:layout_constraintTop_toTopOf="@+id/textView26" />
+
+                <TextView
+                    android:id="@+id/textView57"
+                    android:layout_width="3dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@color/azul_pokedex"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline14"
+                    app:layout_constraintTop_toBottomOf="@+id/textView49" />
 
                 <TextView
                     android:id="@+id/textView31"
@@ -594,7 +675,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
                 <TextView
-                    android:id="@+id/textView55"
+                    android:id="@+id/tvLevelDP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
@@ -612,9 +693,44 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
                     android:text="Lvl:"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView55"
-                    app:layout_constraintEnd_toStartOf="@+id/textView55"
-                    app:layout_constraintTop_toTopOf="@+id/textView55" />
+                    app:layout_constraintBottom_toBottomOf="@+id/tvLevelDP"
+                    app:layout_constraintEnd_toStartOf="@+id/tvLevelDP"
+                    app:layout_constraintTop_toTopOf="@+id/tvLevelDP" />
+
+                <ImageView
+                    android:id="@+id/imGenderDP"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline11"
+                    app:srcCompat="@drawable/ic_baseline_male_24" />
+
+                <ImageView
+                    android:id="@+id/ivSpriteItemDP"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="32dp"
+                    android:layout_marginTop="32dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline14"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView57"
+                    app:srcCompat="@drawable/ic_baseline_catching_pokemon_24" />
+
+                <TextView
+                    android:id="@+id/tvItemNameDP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ItemName"
+                    android:textColor="@color/azul_pokedex"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivSpriteItemDP"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline15"
+                    app:layout_constraintStart_toStartOf="@+id/guideline14"
+                    app:layout_constraintTop_toTopOf="@+id/ivSpriteItemDP" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

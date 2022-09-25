@@ -341,13 +341,14 @@ class CreatePokemonFragment : Fragment() {
             val spriteFront = viewModel.pokemon.value!!.sprites.front_default.toString()
             val spriteBack = viewModel.pokemon.value!!.sprites.back_default.toString()
             val color = viewModel.species.value!!.color.name
+            val id = viewModel.pokemon.value!!.id
 
             viewModel.retornaItem(item, requireContext())
             viewModel.item.observe(viewLifecycleOwner) {
                 val spriteItem = it.sprites.default
 
                 val pokemon =
-                    CreatedPokemon(spriteFront , spriteBack, nickname, species, color, lvl, gender, ability, item, spriteItem, iv, ev, nature, moves, idUsuario)
+                    CreatedPokemon(spriteFront , spriteBack, nickname, species, color, lvl, gender, ability, item, spriteItem, iv, ev, nature, moves, id, idUsuario)
 
                 viewModel.inserirPokemon(pokemon)
             }

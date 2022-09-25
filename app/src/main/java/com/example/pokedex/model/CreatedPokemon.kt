@@ -16,9 +16,8 @@ class CreatedPokemon(
     val ev: List<String>? = null,
     val nature: String? = null,
     val moves: List<String>? = null,
-    //var id: Long = 0,
+    var id: Int? = null,
     val idUsuario: String? = null
-
 ) {
 
     override fun toString(): String {

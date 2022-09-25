@@ -114,5 +114,9 @@
         android:id="@+id/detalhesPokemonFragment"
         android:name="com.example.pokedex.ui.pokemons.detalhes.DetalhesPokemonFragment"
         android:label="fragment_detalhes_pokemon"
-        tools:layout="@layout/fragment_detalhes_pokemon" />
+        tools:layout="@layout/fragment_detalhes_pokemon" >
+        <argument
+            android:name="pokemonId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

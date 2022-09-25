@@ -51,9 +51,10 @@ class UserPokemonsFragment : Fragment() {
                 binding.rvPokemonsUser.adapter = adapterPokemon
                 adapterPokemon.setOnItemClickListener(object : AdapterCreatedPokemon.onItemClickListener {
                     override fun onItemClick(position: Int) {
-                        val pokemonName = it[position].nickname
+                        val pokemonId = it[position].id
+                        val direction = UserPokemonsFragmentDirections.actionUserPokemonsFragmentToDetalhesPokemonFragment(pokemonId!!)
 
-                        //Fazer a direção
+                        findNavController().navigate(direction)
                     }
                 })
             }

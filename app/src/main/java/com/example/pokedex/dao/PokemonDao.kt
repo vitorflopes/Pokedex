@@ -12,6 +12,7 @@ import com.google.firebase.ktx.Firebase
 class PokemonDao {
 
     companion object {
+        val collection = Firebase.firestore.collection("Pokemons")
 
         fun listarPokemonsCampeao(idCampeao: String): Task<QuerySnapshot> {
             return Firebase.firestore.collection("Campeoes")
@@ -19,12 +20,18 @@ class PokemonDao {
         }
 
         fun inserirPokemon(pokemon: CreatedPokemon): Task<DocumentReference> {
-            return Firebase.firestore.collection("Pokemons").add(pokemon)
+            return collection
+                .add(pokemon)
         }
 
         fun pokemonsPorId(idUsuario: String): Task<QuerySnapshot> {
-            return Firebase.firestore.collection("Pokemons")
+            return collection
                 .whereEqualTo("idUsuario", idUsuario).get()
+        }
+
+        fun retornaPokemon(pokemonId: Int): Task<QuerySnapshot> {
+            return collection
+                .whereEqualTo("id", pokemonId).get()
         }
     }
 }
