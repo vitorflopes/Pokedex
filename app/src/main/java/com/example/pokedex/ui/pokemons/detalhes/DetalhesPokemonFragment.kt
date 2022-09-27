@@ -97,6 +97,13 @@ class DetalhesPokemonFragment : Fragment() {
             }
         }
 
+        binding.btnExcluirPokemonDP.setOnClickListener {
+            viewModel.excluirPokemon()
+            Toast.makeText(requireContext(), "Pokemon excluido!", Toast.LENGTH_LONG).show()
+            val direction = DetalhesPokemonFragmentDirections.actionDetalhesPokemonFragmentToPerfilFragment()
+            findNavController().navigate(direction)
+        }
+
         binding.btnVoltarDP.setOnClickListener {
             findNavController().popBackStack()
         }

@@ -17,4 +17,8 @@ class DetalhesPokemonViewModel : ViewModel() {
             msg.value = it.message
         }
     }
+
+    fun excluirPokemon() {
+        PokemonDao.deletaPokemon(pokemon.value!!.idFirebase!!)
+    }
 }

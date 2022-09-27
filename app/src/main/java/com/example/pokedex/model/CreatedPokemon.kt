@@ -1,5 +1,7 @@
 package com.example.pokedex.model
 
+import com.google.firebase.firestore.DocumentId
+
 class CreatedPokemon(
     val spriteFront: String? = null,
     val spriteBack: String? = null,
@@ -16,7 +18,8 @@ class CreatedPokemon(
     val nature: String? = null,
     val moves: List<String>? = null,
     var id: Int? = null,
-    val idUsuario: String? = null
+    val idUsuario: String? = null,
+    val idFirebase: String? = null
 ) {
 
     override fun toString(): String {

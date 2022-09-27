@@ -79,7 +79,8 @@ class AllPokemonsFragment : Fragment() {
                     findNavController().navigate(direction)
                 }
                 else {
-                    Toast.makeText(requireContext(), "Nenhum Pokemon encontrado com esse nome\nDigite o nome do Pokemon completo ou selecione um nome sugerido.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), "Nenhum Pokemon encontrado com esse nome", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), "Digite o nome do Pokemon completo ou selecione um nome sugerido.", Toast.LENGTH_LONG).show()
                 }
             }
             else {

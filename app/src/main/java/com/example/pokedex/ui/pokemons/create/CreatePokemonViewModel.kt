@@ -81,6 +81,7 @@ class CreatePokemonViewModel : ViewModel() {
 
     fun inserirPokemon (pokemon: CreatedPokemon) {
         PokemonDao.inserirPokemon(pokemon).addOnSuccessListener {
+            PokemonDao.setarIdfirebasePokemon(it.id)
             status.value = true
         }.addOnFailureListener {
             msg.value = it.message

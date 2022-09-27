@@ -20,8 +20,11 @@ class PokemonDao {
         }
 
         fun inserirPokemon(pokemon: CreatedPokemon): Task<DocumentReference> {
-            return collection
-                .add(pokemon)
+            return collection.add(pokemon)
+        }
+
+        fun setarIdfirebasePokemon(idFirebase: String): Task<Void> {
+            return collection.document(idFirebase).update("idFirebase", idFirebase)
         }
 
         fun pokemonsPorId(idUsuario: String): Task<QuerySnapshot> {
@@ -32,6 +35,10 @@ class PokemonDao {
         fun retornaPokemon(pokemonId: Int): Task<QuerySnapshot> {
             return collection
                 .whereEqualTo("id", pokemonId).get()
+        }
+
+        fun deletaPokemon(idPokemon: String): Task<Void> {
+            return collection.document(idPokemon).delete()
         }
     }
 }
