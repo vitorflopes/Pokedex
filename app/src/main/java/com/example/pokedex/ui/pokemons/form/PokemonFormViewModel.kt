@@ -35,7 +35,7 @@ class PokemonFormViewModel() : ViewModel() {
             val helpListType = arrayListOf<Type>()
 
             pokemon.value = RetroFit.pokemonsService(context).getPokemon(pokemonName)
-            species.value = RetroFit.pokemonsService(context).getSpecies(pokemon.value!!.id.toString())
+            species.value = RetroFit.pokemonsService(context).getSpecies(pokemon.value!!.species.name)
 
             for (abilitie in pokemon.value!!.abilities) {
                 val ablt = RetroFit.pokemonsService(context).getAbility(abilitie.ability.name)

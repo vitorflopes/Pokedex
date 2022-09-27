@@ -37,7 +37,7 @@ class CreatePokemonViewModel : ViewModel() {
             val helpListNature = arrayListOf<Nature>()
 
             pokemon.value = RetroFit.pokemonsService(context).getPokemon(pokemonName)
-            species.value = RetroFit.pokemonsService(context).getSpecies(pokemon.value!!.id.toString())
+            species.value = RetroFit.pokemonsService(context).getSpecies(pokemon.value!!.species.name)
             listItens.value = RetroFit.pokemonsService(context).getItens().results
             listGames.value = RetroFit.pokemonsService(context).getGames().results
 
