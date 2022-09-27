@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -49,6 +50,7 @@ class SignInFragment : Fragment() {
 
             override fun onAdFailedToLoad(adError : LoadAdError) {
                 Log.d("TesteAnuncio", adError.message)
+                Toast.makeText(requireContext(), adError.message, Toast.LENGTH_LONG).show()
             }
 
             override fun onAdImpression() {

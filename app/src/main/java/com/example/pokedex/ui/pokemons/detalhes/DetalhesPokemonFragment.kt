@@ -2,8 +2,10 @@ package com.example.pokedex.ui.pokemons.detalhes
 
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
+import android.app.Activity
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +16,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.pokedex.R
 import com.example.pokedex.databinding.FragmentDetalhesPokemonBinding
+import com.google.android.gms.ads.AdError
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.squareup.picasso.Picasso
 
 class DetalhesPokemonFragment : Fragment() {

@@ -12,15 +12,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var mAdView: AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        /*
-        MobileAds.initialize(this) {}
-        mAdView = findViewById(R.id.adView)
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
-        */
     }
 }

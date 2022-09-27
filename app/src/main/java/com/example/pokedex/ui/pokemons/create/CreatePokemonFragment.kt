@@ -331,6 +331,8 @@ class CreatePokemonFragment : Fragment() {
             val spatkiv2 = spatkiv()
             val spdefiv2 = spdefiv()
             val speediv2 = speediv()
+            val listIv2 = arrayListOf(hpiv2, atkiv2, defiv2, spatkiv2, spdefiv2, speediv2)
+
             val hpev2 = hpev()
             val atkev2 = atkev()
             val defev2 = defev()
@@ -348,7 +350,7 @@ class CreatePokemonFragment : Fragment() {
                 val spriteItem = it.sprites.default
 
                 val pokemon =
-                    CreatedPokemon(spriteFront , spriteBack, nickname, species, color, lvl, gender, ability, item, spriteItem, iv, ev, nature, moves, id, idUsuario)
+                    CreatedPokemon(spriteFront , spriteBack, nickname, species, color, lvl2, gendername, ability, item, spriteItem, listIv2, ev, nature, moves, id, idUsuario)
 
                 viewModel.inserirPokemon(pokemon)
             }

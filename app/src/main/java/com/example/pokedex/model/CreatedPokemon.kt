@@ -1,7 +1,6 @@
 package com.example.pokedex.model
 
 class CreatedPokemon(
-
     val spriteFront: String? = null,
     val spriteBack: String? = null,
     val nickname: String? = null,

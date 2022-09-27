@@ -36,7 +36,6 @@ class AllPokemonsFragment : Fragment() {
 
         viewModel.pokemonsList.observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) {
-                binding.progressBar.isVisible = false
 
                 val lac = LayoutAnimationController(AnimationUtils.loadAnimation(context, R.anim.item_anim))
                 lac.delay = 0.10f
@@ -54,7 +53,28 @@ class AllPokemonsFragment : Fragment() {
                         findNavController().navigate(direction)
                     }
                 })
+
+                binding.btnProximaPagAP.isVisible = true
+                binding.btnAnteriosPagAP.isVisible = true
+                binding.progressBar.isVisible = false
             }
+        }
+        viewModel.offsetObs.observe(viewLifecycleOwner) {
+            binding.btnAnteriosPagAP.isVisible = it != 0
+        }
+
+        binding.btnProximaPagAP.setOnClickListener {
+            binding.progressBar.isVisible = true
+            binding.btnProximaPagAP.isVisible = false
+            binding.btnAnteriosPagAP.isVisible = false
+            viewModel.retornaOffsetAdd(requireContext())
+        }
+
+        binding.btnAnteriosPagAP.setOnClickListener {
+            binding.progressBar.isVisible = true
+            binding.btnProximaPagAP.isVisible = false
+            binding.btnAnteriosPagAP.isVisible = false
+            viewModel.retornaOffsetMin(requireContext())
         }
 
         binding.btnVoltarAllPokemons.setOnClickListener {

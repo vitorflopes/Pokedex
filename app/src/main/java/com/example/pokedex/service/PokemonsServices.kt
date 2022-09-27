@@ -4,11 +4,15 @@ import com.example.pokedex.model.PokemonsResponse
 import com.example.pokedex.model.apiModel.*
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface PokemonsServices {
 
-    @GET("pokemon?limit=30")
-    suspend fun getPokemons() : PokemonsResponse
+    @GET("pokemon")
+    suspend fun getPokemons(
+        @Query("limit") limit: Int = 30,
+        @Query("offset") offset: Int = 0
+    ) : PokemonsResponse
 
     @GET("pokemon/{name}")
     suspend fun getPokemon(@Path("name") name: String) : Pokemon
