@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -61,6 +63,28 @@ class AllPokemonsFragment : Fragment() {
         }
         viewModel.offsetObs.observe(viewLifecycleOwner) {
             binding.btnAnteriosPagAP.isVisible = it != 0
+        }
+
+        viewModel.pokemonListName.observe(viewLifecycleOwner) {
+            val adapterNomePokemon : ArrayAdapter<String> =
+                ArrayAdapter<String>(requireContext(), android.R.layout.simple_dropdown_item_1line, it)
+            binding.acPokemonAP.setAdapter(adapterNomePokemon)
+        }
+
+        binding.btnPesquisarPokemonNameAP.setOnClickListener {
+            if (!binding.acPokemonAP.text.isNullOrBlank()) {
+                if ((viewModel.pokemonListName.value!!).contains(binding.acPokemonAP.text.toString())) {
+                    val direction = AllPokemonsFragmentDirections
+                        .actionAllPokemonsFragmentToPokemonFormFragment(binding.acPokemonAP.text.toString())
+                    findNavController().navigate(direction)
+                }
+                else {
+                    Toast.makeText(requireContext(), "Nenhum Pokemon encontrado com esse nome\nDigite o nome do Pokemon completo ou selecione um nome sugerido.", Toast.LENGTH_LONG).show()
+                }
+            }
+            else {
+                Toast.makeText(requireContext(), "Preencha o nome do Pokemon antes de pesquisar.", Toast.LENGTH_LONG).show()
+            }
         }
 
         binding.btnProximaPagAP.setOnClickListener {

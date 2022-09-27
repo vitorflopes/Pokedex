@@ -1,6 +1,7 @@
 package com.example.pokedex.service
 
 import com.example.pokedex.model.PokemonsResponse
+import com.example.pokedex.model.PokemonsResponseName
 import com.example.pokedex.model.apiModel.*
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -13,6 +14,9 @@ interface PokemonsServices {
         @Query("limit") limit: Int = 30,
         @Query("offset") offset: Int = 0
     ) : PokemonsResponse
+
+    @GET("pokemon/?limit=1155")
+    suspend fun getPokemonsName() : PokemonsResponseName
 
     @GET("pokemon/{name}")
     suspend fun getPokemon(@Path("name") name: String) : Pokemon
